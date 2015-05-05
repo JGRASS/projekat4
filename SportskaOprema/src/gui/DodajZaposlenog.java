@@ -1,18 +1,24 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+import prodavnica.Zaposleni;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DodajZaposlenog extends JFrame {
 
@@ -23,14 +29,15 @@ public class DodajZaposlenog extends JFrame {
 	private JTextField textField_prezimeZaposlenog;
 	private JLabel lblPol;
 	private JLabel lblIdzaposlenog;
-	private JComboBox comboBox;
-	private JTextField textField_ID_Zaposlenog;
 	private JLabel lblAdresa;
 	private JLabel lblBrTelefona;
 	private JTextField textField_Adresa;
 	private JTextField textField_brtelefona;
 	private JButton btnUnesiNovogZaposlenog;
 	private JButton btnOdustani;
+	private Zaposleni zaposleni;
+	private JTextField textField_Id_Zaposlenog;
+	private JComboBox<String> comboBox;
 
 	/**
 	 * Launch the application.
@@ -67,7 +74,7 @@ public class DodajZaposlenog extends JFrame {
 		contentPane.add(getLblPol());
 		contentPane.add(getLblIdzaposlenog());
 		contentPane.add(getComboBox());
-		contentPane.add(getTextField_ID_Zaposlenog());
+		contentPane.add(getTextField_Id_Zaposlenog());
 		contentPane.add(getLblAdresa());
 		contentPane.add(getLblBrTelefona());
 		contentPane.add(getTextField_Adresa());
@@ -118,20 +125,7 @@ public class DodajZaposlenog extends JFrame {
 		}
 		return lblIdzaposlenog;
 	}
-	private JComboBox getComboBox() {
-		if (comboBox == null) {
-			comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Mu\u0161ko", "\u017Densko"}));
-		}
-		return comboBox;
-	}
-	private JTextField getTextField_ID_Zaposlenog() {
-		if (textField_ID_Zaposlenog == null) {
-			textField_ID_Zaposlenog = new JTextField();
-			textField_ID_Zaposlenog.setColumns(10);
-		}
-		return textField_ID_Zaposlenog;
-	}
+
 	private JLabel getLblAdresa() {
 		if (lblAdresa == null) {
 			lblAdresa = new JLabel("Adresa:");
@@ -163,6 +157,12 @@ public class DodajZaposlenog extends JFrame {
 	private JButton getBtnUnesiNovogZaposlenog() {
 		if (btnUnesiNovogZaposlenog == null) {
 			btnUnesiNovogZaposlenog = new JButton("Unesi Novog Zaposlenog");
+			btnUnesiNovogZaposlenog.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					zaposleni.dodajZaposlenog(getTextField_imeZaposlenog().toString(),getTextField_prezimeZaposlenog().toString(), getComboBox().toString(),
+							getTextField_brtelefona().toString(), getTextField_Id_Zaposlenog().toString(),getTextField_Adresa().toString());
+				}
+			});
 		}
 		return btnUnesiNovogZaposlenog;
 	}
@@ -171,5 +171,20 @@ public class DodajZaposlenog extends JFrame {
 			btnOdustani = new JButton("Odustani");
 		}
 		return btnOdustani;
+	}
+	
+	private JTextField getTextField_Id_Zaposlenog() {
+		if (textField_Id_Zaposlenog == null) {
+			textField_Id_Zaposlenog = new JTextField();
+			textField_Id_Zaposlenog.setColumns(10);
+		}
+		return textField_Id_Zaposlenog;
+	}
+	private JComboBox<String> getComboBox() {
+		if (comboBox == null) {
+			comboBox = new JComboBox<String>();
+			comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"musko", "zensko"}));
+		}
+		return comboBox;
 	}
 }
