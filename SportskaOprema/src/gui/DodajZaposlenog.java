@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -35,26 +34,13 @@ public class DodajZaposlenog extends JFrame {
 	private JTextField textField_brtelefona;
 	private JButton btnUnesiNovogZaposlenog;
 	private JButton btnOdustani;
-	private Zaposleni zaposleni;
 	private JTextField textField_Id_Zaposlenog;
 	private JComboBox<String> comboBox;
+	private Zaposleni zaposleni;
+	private Prodavnica prodavnica;
+	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DodajZaposlenog frame = new DodajZaposlenog();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -81,6 +67,7 @@ public class DodajZaposlenog extends JFrame {
 		contentPane.add(getTextField_brtelefona());
 		contentPane.add(getBtnUnesiNovogZaposlenog());
 		contentPane.add(getBtnOdustani());
+		
 	}
 
 	private JLabel getLblIme() {
@@ -169,6 +156,11 @@ public class DodajZaposlenog extends JFrame {
 	private JButton getBtnOdustani() {
 		if (btnOdustani == null) {
 			btnOdustani = new JButton("Odustani");
+			btnOdustani.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
 		}
 		return btnOdustani;
 	}

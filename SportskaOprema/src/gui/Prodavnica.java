@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JLayeredPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Prodavnica extends JFrame {
 
@@ -178,6 +180,12 @@ public class Prodavnica extends JFrame {
 	private JMenuItem getMntmDodajZaposlenog() {
 		if (mntmDodajZaposlenog == null) {
 			mntmDodajZaposlenog = new JMenuItem("Dodaj zaposlenog");
+			mntmDodajZaposlenog.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					otvoriDodajZaposlenog();
+					
+				}
+			});
 		}
 		return mntmDodajZaposlenog;
 	}
@@ -224,5 +232,11 @@ public class Prodavnica extends JFrame {
 			layeredPane_Nabavka = new JLayeredPane();
 		}
 		return layeredPane_Nabavka;
+	}
+	
+	private void otvoriDodajZaposlenog() {
+		DodajZaposlenog prozor = new DodajZaposlenog();
+		prozor.setLocationRelativeTo(contentPane);
+		prozor.setVisible(true);
 	}
 }

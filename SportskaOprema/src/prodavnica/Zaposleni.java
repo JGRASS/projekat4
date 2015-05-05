@@ -10,7 +10,7 @@ public class Zaposleni implements ZaposleniInterface{
 	private String brTelefona;
 	private String ID_zaposlenog;
 	private String adresa;
-	private LinkedList<Zaposleni> listaZaposlenih = new LinkedList<Zaposleni>();
+	protected LinkedList<Zaposleni> listaZaposlenih = new LinkedList<Zaposleni>();
 	
 	
 	public String getIme() {
