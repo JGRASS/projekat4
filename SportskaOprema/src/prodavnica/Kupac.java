@@ -30,5 +30,23 @@ public void setKolicina(double kolicinaNovca) {
 public String toString() {
 	return "Kupac sa id:" + id + ", i imenom: " + ime + ", je kod nas potrosio do sada: " + kolicinaNovca ;
 }
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Kupac other = (Kupac) obj;
+	if (id != other.id)
+		return false;
+	if (ime == null) {
+		if (other.ime != null)
+			return false;
+	} else if (!ime.equals(other.ime))
+		return false;
+	return true;
+}
 
 }
