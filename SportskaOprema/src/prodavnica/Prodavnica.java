@@ -4,7 +4,9 @@ import java.util.LinkedList;
 
 import sistemskeoperacije.SODaLiImaPopust;
 import sistemskeoperacije.SODodajProizvod;
+import sistemskeoperacije.SOIzbrisiProizvod;
 import sistemskeoperacije.SONaruci;
+import sistemskeoperacije.SOPrikaziSveProizvode;
 import sistemskeoperacije.SOPrimiNarudzbinu;
 import sistemskeoperacije.SOPronadjiDobavljaca;
 import sistemskeoperacije.SOPronadjiKupca;
@@ -16,6 +18,10 @@ public class Prodavnica {
 	private double tekuciRacun;
 	private LinkedList<Kupac> kupci = new LinkedList<Kupac>();
 	private LinkedList<Proizvod> proizvodi = new LinkedList<Proizvod>();
+	public LinkedList<Proizvod> getProizvodi() {
+		return proizvodi;
+	}
+
 	private LinkedList<Dobavljac> dobavljaci = new LinkedList<Dobavljac>();
 	
 	public void naruci(Proizvod p, Dobavljac d) {
@@ -45,5 +51,12 @@ public class Prodavnica {
 	public void dodajProizvod(Proizvod p) {
 		SODodajProizvod.dodajProizvod(p, proizvodi);
 	}
-    
+    public LinkedList<Proizvod> prikaziSveProizvode(){
+    	return SOPrikaziSveProizvode.vratiSveProizvode(proizvodi);
+    }
+
+	public void izbrisiProizvod(Proizvod p) {
+		SOIzbrisiProizvod.izbrisiProizvod(p, proizvodi);
+		
+	}
 }

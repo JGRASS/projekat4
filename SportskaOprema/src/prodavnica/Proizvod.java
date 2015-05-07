@@ -2,7 +2,7 @@ package prodavnica;
 
 public class Proizvod {
 	
-private int id;
+private String id;
 private String naziv;
 private int kolicina;
 private double cena;
@@ -13,10 +13,10 @@ public double getCena() {
 public void setCena(double cena) {
 	this.cena = cena;
 }
-public int getId() {
+public String getId() {
 	return id;
 }
-public void setId(int id) {
+public void setId(String id) {
 	this.id = id;
 }
 public String getNaziv() {
