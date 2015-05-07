@@ -3,6 +3,7 @@ package prodavnica;
 import java.util.LinkedList;
 
 import sistemskeoperacije.SODaLiImaPopust;
+import sistemskeoperacije.SODodajProizvod;
 import sistemskeoperacije.SONaruci;
 import sistemskeoperacije.SOPrimiNarudzbinu;
 import sistemskeoperacije.SOPronadjiDobavljaca;
@@ -39,6 +40,10 @@ public class Prodavnica {
 	
 	public Dobavljac pronadjiDobavljaca(String ime) {
 		return SOPronadjiDobavljaca.pronadjiProizvod(ime, dobavljaci);
+	}
+	
+	public void dodajProizvod(Proizvod p) {
+		SODodajProizvod.dodajProizvod(p, proizvodi);
 	}
     
 }
