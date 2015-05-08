@@ -64,9 +64,9 @@ public class Zaposleni {
 	}
 	
 	public String toString() {
-		return "Zaposleni [ID_zaposlenog=" + ID_zaposlenog + ", ime=" + ime
-				+ ", prezime=" + prezime + ", pol=" + pol + ", brTelefona="
-				+ brTelefona + ", adresa=" + adresa + "]";
+		return "ID zaposlenog: " + ID_zaposlenog + ", ime: " + ime
+				+ ", prezime: " + prezime + ", pol: " + pol + ", brTelefona: "
+				+ brTelefona + ", adresa: " + adresa + "]";
 	}
 
 }

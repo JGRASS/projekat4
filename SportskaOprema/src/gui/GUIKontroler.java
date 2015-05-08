@@ -6,17 +6,17 @@ import java.util.LinkedList;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import nabavka.Dobavljac;
 import prodavnica.Kupac;
 import prodavnica.Prodavnica;
 import prodavnica.Proizvod;
-
 import prodavnica.Zaposleni;
-
 import sistemskeoperacije.SODodajProizvod;
 
 
@@ -58,7 +58,7 @@ public class GUIKontroler extends JFrame {
 	public static void dodajZaposlenog(String ime, String prezime,
 			String pol, String telefon, String id, String adresa) {
 		prodavnica.dodajZaposlenog(ime, prezime, pol, telefon, id, adresa);
-		
+		glavniProzor.getZaposleniList().setListData(prodavnica.getZaposleni().toArray());
 	}
 	
 	public static void otvoriDodajZaposlenog() {
@@ -90,6 +90,37 @@ public class GUIKontroler extends JFrame {
 	public static void izbrisiProizvod(Proizvod p) {
 		prodavnica.izbrisiProizvod(p);
 		
+	}
+	
+	public static void prikaziDodaj() {
+		DodajGUI prozor = new DodajGUI();
+		prozor.setVisible(true);
+		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
+	}
+	
+	public static void prikaziPronadji() {
+		PronadjiGUI prozor = new PronadjiGUI();
+		prozor.setVisible(true);
+		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
+	}
+	
+	public static void prikaziInformacije() {
+		JOptionPane.showMessageDialog(glavniProzor.getContentPane(), 
+				"Autori: \n Nemanja Vukic \n Gordan Gigovic \n Ivan Rakic", "Informacije o programu",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public static void ugasiAplikaciju() {
+		int opcija = JOptionPane.showConfirmDialog(glavniProzor.getContentPane(),
+				"Da li zelite da zatvorite program?", "Izlazak",
+				JOptionPane.YES_NO_OPTION);
+
+		if (opcija == JOptionPane.YES_OPTION)
+			System.exit(0);
+	}
+	
+	public static void promeniStanjeRacuna(JTextField area) {
+		area.setText(""+prodavnica.getTekuciRacun());
 	}
 
 }

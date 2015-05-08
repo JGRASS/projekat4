@@ -22,6 +22,8 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.ImageIcon;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ProdavnicaGUI extends JFrame {
 
@@ -55,7 +57,6 @@ public class ProdavnicaGUI extends JFrame {
 	private JList zaposleniList;
 	private JPanel panel_1;
 	private JButton btnDodajProizvod;
-	private JButton btnDodajDobavljaa;
 	private JButton btnDodajZaposlenog;
 	private JButton btnPronai;
 
@@ -64,6 +65,12 @@ public class ProdavnicaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ProdavnicaGUI() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				GUIKontroler.ugasiAplikaciju();
+			}
+		});
 		setTitle("Prodavnica");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 569, 382);
@@ -75,6 +82,7 @@ public class ProdavnicaGUI extends JFrame {
 		contentPane.add(getSplitPane(), BorderLayout.SOUTH);
 		contentPane.add(getTabbedPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel_1(), BorderLayout.EAST);
+		GUIKontroler.promeniStanjeRacuna(textField_stanjeNaRacunu);
 	}
 
 	private JMenuBar getMenuBar_1() {
@@ -141,6 +149,11 @@ public class ProdavnicaGUI extends JFrame {
 	private JMenuItem getMntmExit() {
 		if (mntmExit == null) {
 			mntmExit = new JMenuItem("Exit");
+			mntmExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.ugasiAplikaciju();
+				}
+			});
 		}
 		return mntmExit;
 	}
@@ -194,6 +207,11 @@ public class ProdavnicaGUI extends JFrame {
 	private JMenuItem getMntmAboutProgram() {
 		if (mntmAboutProgram == null) {
 			mntmAboutProgram = new JMenuItem("About program");
+			mntmAboutProgram.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziInformacije();
+				}
+			});
 		}
 		return mntmAboutProgram;
 	}
@@ -270,7 +288,7 @@ public class ProdavnicaGUI extends JFrame {
 		}
 		return scrollPane_2;
 	}
-	private JList getZaposleniList() {
+	protected JList getZaposleniList() {
 		if (zaposleniList == null) {
 			zaposleniList = new JList();
 		}
@@ -281,23 +299,21 @@ public class ProdavnicaGUI extends JFrame {
 			panel_1 = new JPanel();
 			panel_1.setLayout(new MigLayout("", "[105px]", "[23px][][][][][]"));
 			panel_1.add(getBtnDodajProizvod(), "cell 0 1,growx,aligny top");
-			panel_1.add(getBtnDodajDobavljaa(), "cell 0 2");
-			panel_1.add(getBtnDodajZaposlenog(), "cell 0 3");
-			panel_1.add(getBtnPronai(), "cell 0 5,growx");
+			panel_1.add(getBtnDodajZaposlenog(), "cell 0 2");
+			panel_1.add(getBtnPronai(), "cell 0 4,growx");
 		}
 		return panel_1;
 	}
 	private JButton getBtnDodajProizvod() {
 		if (btnDodajProizvod == null) {
-			btnDodajProizvod = new JButton("Dodaj kupca");
+			btnDodajProizvod = new JButton("Dodaj");
+			btnDodajProizvod.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziDodaj();
+				}
+			});
 		}
 		return btnDodajProizvod;
-	}
-	private JButton getBtnDodajDobavljaa() {
-		if (btnDodajDobavljaa == null) {
-			btnDodajDobavljaa = new JButton("Dodaj dobavlja\u010Da");
-		}
-		return btnDodajDobavljaa;
 	}
 	private JButton getBtnDodajZaposlenog() {
 		if (btnDodajZaposlenog == null) {
@@ -314,6 +330,11 @@ public class ProdavnicaGUI extends JFrame {
 	private JButton getBtnPronai() {
 		if (btnPronai == null) {
 			btnPronai = new JButton("Prona\u0111i");
+			btnPronai.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziPronadji();
+				}
+			});
 		}
 		return btnPronai;
 	}

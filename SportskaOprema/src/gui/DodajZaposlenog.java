@@ -143,8 +143,8 @@ public class DodajZaposlenog extends JFrame {
 			btnUnesiNovogZaposlenog = new JButton("Unesi Novog Zaposlenog");
 			btnUnesiNovogZaposlenog.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.dodajZaposlenog(getTextField_imeZaposlenog().toString(),getTextField_prezimeZaposlenog().toString(), getComboBox().toString(),
-							getTextField_brtelefona().toString(), getTextField_Id_Zaposlenog().toString(),getTextField_Adresa().toString());
+					GUIKontroler.dodajZaposlenog(getTextField_imeZaposlenog().getText(),getTextField_prezimeZaposlenog().getText(), getComboBox().getSelectedItem().toString(),
+							getTextField_brtelefona().getText(), getTextField_Id_Zaposlenog().getText(),getTextField_Adresa().getText());
 					dispose();
 				}
 			});
