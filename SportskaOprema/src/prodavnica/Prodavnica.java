@@ -5,8 +5,10 @@ import java.util.LinkedList;
 import sistemskeoperacije.SODaLiImaPopust;
 import sistemskeoperacije.SODodajProizvod;
 import sistemskeoperacije.SODodajZaposlenog;
+import sistemskeoperacije.SOIzbrisiProizvod;
 import sistemskeoperacije.SONaruci;
 import sistemskeoperacije.SOOtpustiZaposlenog;
+import sistemskeoperacije.SOPrikaziSveProizvode;
 import sistemskeoperacije.SOPrimiNarudzbinu;
 import sistemskeoperacije.SOPronadjiDobavljaca;
 import sistemskeoperacije.SOPronadjiKupca;
@@ -97,4 +99,12 @@ public class Prodavnica {
 		this.zaposleni = zaposleni;
 	}
     
+    public LinkedList<Proizvod> prikaziSveProizvode(){
+    	return SOPrikaziSveProizvode.vratiSveProizvode(proizvodi);
+    }
+
+	public void izbrisiProizvod(Proizvod p) {
+		SOIzbrisiProizvod.izbrisiProizvod(p, proizvodi);
+		
+	}
 }

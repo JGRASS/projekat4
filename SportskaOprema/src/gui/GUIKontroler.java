@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.LinkedList;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -13,7 +14,11 @@ import nabavka.Dobavljac;
 import prodavnica.Kupac;
 import prodavnica.Prodavnica;
 import prodavnica.Proizvod;
+
 import prodavnica.Zaposleni;
+
+import sistemskeoperacije.SODodajProizvod;
+
 
 public class GUIKontroler extends JFrame {
 
@@ -62,5 +67,29 @@ public class GUIKontroler extends JFrame {
 		prozor.setVisible(true);
 	}
 
+	public static void dodajProizvod(String Id, String naziv,
+			double cena, int kolicina) {
+		// kad bude formiran glavni prozor treba napraviti da iskace poruka da je pogresno uneta neka vrednost
+			try {
+				Proizvod p=new Proizvod();
+				p.setId(Id);
+				p.setKolicina(kolicina);
+				p.setCena(cena);
+				p.setNaziv(naziv);
+				prodavnica.dodajProizvod(p);
+			} catch (Exception e) {
+				
+			}
+		
+		
+	}
+	public static LinkedList<Proizvod> prikaziProizvode(){
+		return  prodavnica.prikaziSveProizvode();
+	}
+
+	public static void izbrisiProizvod(Proizvod p) {
+		prodavnica.izbrisiProizvod(p);
+		
+	}
 
 }
