@@ -3,11 +3,17 @@ package prodavnica;
 import java.util.LinkedList;
 
 import sistemskeoperacije.SODaLiImaPopust;
+import sistemskeoperacije.SODodajDobavljaca;
+import sistemskeoperacije.SODodajKupca;
 import sistemskeoperacije.SODodajProizvod;
 import sistemskeoperacije.SODodajZaposlenog;
+import sistemskeoperacije.SOIzbrisiDobavljaca;
+import sistemskeoperacije.SOIzbrisiKupca;
 import sistemskeoperacije.SOIzbrisiProizvod;
 import sistemskeoperacije.SONaruci;
 import sistemskeoperacije.SOOtpustiZaposlenog;
+import sistemskeoperacije.SOPrikaziSveDobavljace;
+import sistemskeoperacije.SOPrikaziSveKupce;
 import sistemskeoperacije.SOPrikaziSveProizvode;
 import sistemskeoperacije.SOPrimiNarudzbinu;
 import sistemskeoperacije.SOPronadjiDobavljaca;
@@ -105,6 +111,36 @@ public class Prodavnica {
 
 	public void izbrisiProizvod(Proizvod p) {
 		SOIzbrisiProizvod.izbrisiProizvod(p, proizvodi);
+		
+	}
+
+	public void dodajKupca(Kupac p) {
+		SODodajKupca.dodajKupca(p, kupci);
+		
+	}
+
+	public void dodajDobavljaca(Dobavljac p) {
+		SODodajDobavljaca.dodajDobavljaca(p, dobavljaci);
+		
+	}
+
+	public LinkedList<Kupac> prikaziSveKupce() {
+		
+		return SOPrikaziSveKupce.prikaziSveKupce(kupci);
+	}
+
+	public LinkedList<Dobavljac> prikaziSveDobavljace() {
+		
+		return SOPrikaziSveDobavljace.prikaziSveDobavljace(dobavljaci);
+	}
+
+	public void izbrisiKupca(Kupac p) {
+		SOIzbrisiKupca.izbrisiKupca(p, kupci);
+		
+	}
+
+	public void izbrisiDobavljaca(Dobavljac p) {
+		SOIzbrisiDobavljaca.izbrisiDobavljaca(p, dobavljaci);
 		
 	}
 }

@@ -47,5 +47,11 @@ public class Dobavljac {
 	public void setProizvodi(LinkedList<Proizvod> proizvodi) {
 		this.proizvodi = proizvodi;
 	}
+	@Override
+	public String toString() {
+		return "Dobavljac sa Id: " + dobavljacId + ",imenom: " + ime
+				+ ",adresom: " + adresa + ",i telefonom: " + telefon;
+	}
+	
 
 }

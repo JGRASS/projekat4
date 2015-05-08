@@ -68,17 +68,19 @@ public class GUIKontroler extends JFrame {
 	}
 
 	public static void dodajProizvod(String Id, String naziv,
-			double cena, int kolicina) {
-		// kad bude formiran glavni prozor treba napraviti da iskace poruka da je pogresno uneta neka vrednost
+			String cena, String kolicina) {
+		
 			try {
 				Proizvod p=new Proizvod();
 				p.setId(Id);
-				p.setKolicina(kolicina);
-				p.setCena(cena);
+				p.setKolicina(Integer.parseInt(kolicina));
+				p.setCena(Double.parseDouble(cena));
 				p.setNaziv(naziv);
 				prodavnica.dodajProizvod(p);
 			} catch (Exception e) {
-				
+				JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+						"Pogresno uneta vrednost", "Greska",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		
 		
@@ -121,6 +123,66 @@ public class GUIKontroler extends JFrame {
 	
 	public static void promeniStanjeRacuna(JTextField area) {
 		area.setText(""+prodavnica.getTekuciRacun());
+	}
+
+
+	public static void dodajKupca(String Id, String ime, String kolicinaNovca) {
+		try {
+			Kupac p=new Kupac();
+			p.setId(Id);
+			p.setIme(ime);
+			p.setKolicina(Double.parseDouble(kolicinaNovca));
+			
+			prodavnica.dodajKupca(p);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+					"Pogresno uneta vrednost", "Greska",
+					JOptionPane.ERROR_MESSAGE);
+			
+		}
+		
+	}
+
+
+	public static void dodajDobavljaca(String Id, String ime, String adresa,
+			String telefon) {
+		try {
+			Dobavljac p= new Dobavljac();
+			p.setDobavljacId(Id);
+			p.setIme(ime);
+			p.setAdresa(adresa);
+			p.setTelefon(telefon);
+			prodavnica.dodajDobavljaca(p);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+					"Pogresno uneta vrednost", "Greska",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+
+
+	public static LinkedList<Kupac> prikaziSveKupce() {
+		
+		return prodavnica.prikaziSveKupce();
+	}
+
+
+	public static LinkedList<Dobavljac> prikaziSveDobavljace() {
+		
+		return prodavnica.prikaziSveDobavljace();
+	}
+
+
+	public static void izbrisiKupca(Kupac p) {
+		prodavnica.izbrisiKupca(p);
+		
+	}
+
+
+	public static void izbrisiDobavljaca(Dobavljac p) {
+		prodavnica.izbrisiDobavljaca(p);
+		
 	}
 
 }
