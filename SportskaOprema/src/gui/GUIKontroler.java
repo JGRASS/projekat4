@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
@@ -12,11 +13,12 @@ import nabavka.Dobavljac;
 import prodavnica.Kupac;
 import prodavnica.Prodavnica;
 import prodavnica.Proizvod;
+import prodavnica.Zaposleni;
 
 public class GUIKontroler extends JFrame {
 
-	private JPanel contentPane;
 	private static Prodavnica prodavnica = new Prodavnica();
+	private static ProdavnicaGUI glavniProzor;
 
 	/**
 	 * Launch the application.
@@ -25,8 +27,9 @@ public class GUIKontroler extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUIKontroler frame = new GUIKontroler();
-					frame.setVisible(true);
+					glavniProzor = new ProdavnicaGUI();
+					glavniProzor.setVisible(true);
+					glavniProzor.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -34,18 +37,6 @@ public class GUIKontroler extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public GUIKontroler() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		
-	}
 	
 	public static Proizvod pronadjiProizvod(String naziv) {
 		return prodavnica.pronadjiProizvod(naziv);
@@ -58,5 +49,18 @@ public class GUIKontroler extends JFrame {
 	public static Dobavljac pronadjiDobavljaca (String ime) {
 		return prodavnica.pronadjiDobavljaca(ime);
 	}
+
+	public static void dodajZaposlenog(String ime, String prezime,
+			String pol, String telefon, String id, String adresa) {
+		prodavnica.dodajZaposlenog(ime, prezime, pol, telefon, id, adresa);
+		
+	}
+	
+	public static void otvoriDodajZaposlenog() {
+		DodajZaposlenog prozor = new DodajZaposlenog();
+		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
+		prozor.setVisible(true);
+	}
+
 
 }
