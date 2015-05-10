@@ -19,6 +19,12 @@ import sistemskeoperacije.SOPrimiNarudzbinu;
 import sistemskeoperacije.SOPronadjiDobavljaca;
 import sistemskeoperacije.SOPronadjiKupca;
 import sistemskeoperacije.SOPronadjiProizvod;
+import sistemskeoperacije.SOSacuvajUFajlDobavljac;
+import sistemskeoperacije.SOSacuvajUFajlKupac;
+import sistemskeoperacije.SOSacuvajUFajlZaposleni;
+import sistemskeoperacije.SOUcitajIzFajlaDobavljac;
+import sistemskeoperacije.SOUcitajIzFajlaKupac;
+import sistemskeoperacije.SOUcitajIzFajlaZaposleni;
 import nabavka.Dobavljac;
 
 public class Prodavnica {
@@ -142,5 +148,29 @@ public class Prodavnica {
 	public void izbrisiDobavljaca(Dobavljac p) {
 		SOIzbrisiDobavljaca.izbrisiDobavljaca(p, dobavljaci);
 		
+	}
+	
+	public void sacuvajUFajlDobavljac(String putanja) {
+		SOSacuvajUFajlDobavljac.sacuvajUFajl(putanja, dobavljaci);
+	}
+	
+	public void sacuvajUFajlKupac(String putanja) {
+		SOSacuvajUFajlKupac.sacuvajUFajl(putanja, kupci);
+	}
+	
+	public void sacuvajUFajlZaposleni(String putanja) {
+		SOSacuvajUFajlZaposleni.sacuvajUFajl(putanja, zaposleni);
+	}
+	
+	public void ucitajUFajlDobavljac(String putanja) {
+		SOUcitajIzFajlaDobavljac.ucitajIzFajla(putanja, dobavljaci);
+	}
+	
+	public void ucitajUFajlKupac(String putanja) {
+		SOUcitajIzFajlaKupac.ucitajIzFajla(putanja, kupci);
+	}
+	
+	public void ucitajUFajlZaposleni(String putanja) {
+		SOUcitajIzFajlaZaposleni.ucitajIzFajla(putanja, zaposleni);
 	}
 }

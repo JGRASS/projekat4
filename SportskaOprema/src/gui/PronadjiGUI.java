@@ -413,7 +413,7 @@ public class PronadjiGUI extends JFrame {
 		if (lblId_2 == null) {
 			lblId_2 = new JLabel("ID :");
 			lblId_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblId_2.setBounds(10, 98, 46, 14);
+			lblId_2.setBounds(10, 67, 46, 14);
 		}
 		return lblId_2;
 	}
@@ -421,7 +421,7 @@ public class PronadjiGUI extends JFrame {
 		if (dobavljacIDTextField == null) {
 			dobavljacIDTextField = new JTextField();
 			dobavljacIDTextField.setEditable(false);
-			dobavljacIDTextField.setBounds(79, 97, 122, 20);
+			dobavljacIDTextField.setBounds(79, 67, 122, 20);
 			dobavljacIDTextField.setColumns(10);
 		}
 		return dobavljacIDTextField;
@@ -430,7 +430,7 @@ public class PronadjiGUI extends JFrame {
 		if (lblAdresa == null) {
 			lblAdresa = new JLabel("Adresa :");
 			lblAdresa.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblAdresa.setBounds(10, 140, 62, 14);
+			lblAdresa.setBounds(10, 99, 62, 14);
 		}
 		return lblAdresa;
 	}
@@ -438,7 +438,7 @@ public class PronadjiGUI extends JFrame {
 		if (dobAdresaTextField == null) {
 			dobAdresaTextField = new JTextField();
 			dobAdresaTextField.setEditable(false);
-			dobAdresaTextField.setBounds(81, 139, 120, 20);
+			dobAdresaTextField.setBounds(79, 98, 120, 20);
 			dobAdresaTextField.setColumns(10);
 		}
 		return dobAdresaTextField;
@@ -447,7 +447,7 @@ public class PronadjiGUI extends JFrame {
 		if (lblTelefon == null) {
 			lblTelefon = new JLabel("Telefon :");
 			lblTelefon.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblTelefon.setBounds(10, 183, 62, 14);
+			lblTelefon.setBounds(10, 135, 62, 14);
 		}
 		return lblTelefon;
 	}
@@ -455,7 +455,7 @@ public class PronadjiGUI extends JFrame {
 		if (dobTelefonTextField == null) {
 			dobTelefonTextField = new JTextField();
 			dobTelefonTextField.setEditable(false);
-			dobTelefonTextField.setBounds(79, 182, 122, 20);
+			dobTelefonTextField.setBounds(79, 134, 122, 20);
 			dobTelefonTextField.setColumns(10);
 		}
 		return dobTelefonTextField;
@@ -478,7 +478,7 @@ public class PronadjiGUI extends JFrame {
 		if (lblObavetenje == null) {
 			lblObavetenje = new JLabel("Obave\u0161tenje :");
 			lblObavetenje.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblObavetenje.setBounds(10, 218, 92, 14);
+			lblObavetenje.setBounds(10, 176, 92, 14);
 		}
 		return lblObavetenje;
 	}
@@ -486,7 +486,7 @@ public class PronadjiGUI extends JFrame {
 		if (dobObavestenjetextField == null) {
 			dobObavestenjetextField = new JTextField();
 			dobObavestenjetextField.setEditable(false);
-			dobObavestenjetextField.setBounds(10, 243, 191, 20);
+			dobObavestenjetextField.setBounds(10, 201, 191, 20);
 			dobObavestenjetextField.setColumns(10);
 		}
 		return dobObavestenjetextField;

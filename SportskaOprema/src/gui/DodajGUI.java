@@ -83,6 +83,9 @@ public class DodajGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.add(getTabbedPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel_3(), BorderLayout.SOUTH);
+		GUIKontroler.osveziListuDobavljaca(list_2);
+		GUIKontroler.osveziListuKupaca(list_1);
+		GUIKontroler.osveziListuProizvoda(list);
 	}
 
 	private JTabbedPane getTabbedPane() {

@@ -2,8 +2,10 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.io.File;
 import java.util.LinkedList;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -134,6 +136,8 @@ public class GUIKontroler extends JFrame {
 			p.setKolicina(Double.parseDouble(kolicinaNovca));
 			
 			prodavnica.dodajKupca(p);
+			
+			glavniProzor.getProdajaList().setListData(prodavnica.getKupci().toArray());
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
 					"Pogresno uneta vrednost", "Greska",
@@ -153,6 +157,8 @@ public class GUIKontroler extends JFrame {
 			p.setAdresa(adresa);
 			p.setTelefon(telefon);
 			prodavnica.dodajDobavljaca(p);
+			
+			glavniProzor.getNabavkaList().setListData(prodavnica.getDobavljaci().toArray());
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
 					"Pogresno uneta vrednost", "Greska",
@@ -183,6 +189,136 @@ public class GUIKontroler extends JFrame {
 	public static void izbrisiDobavljaca(Dobavljac p) {
 		prodavnica.izbrisiDobavljaca(p);
 		
+	}
+	
+	public static void osveziListuProizvoda(JList lista) {
+		lista.setListData(prodavnica.getProizvodi().toArray());
+	}
+	
+	public static void osveziListuKupaca(JList lista) {
+		lista.setListData(prodavnica.getKupci().toArray());
+	}
+	
+	public static void osveziListuDobavljaca(JList lista) {
+		lista.setListData(prodavnica.getDobavljaci().toArray());
+	}
+	
+	public static void ucitajIzFajlaKupac(JList lista) {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showOpenDialog(glavniProzor.getContentPane());
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				prodavnica.ucitajUFajlKupac(file.getAbsolutePath());
+				osveziListuKupaca(lista);
+			}	
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(),
+					"Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public static void ucitajIzFajlaDobavljac(JList lista) {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showOpenDialog(glavniProzor.getContentPane());
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				prodavnica.ucitajUFajlDobavljac(file.getAbsolutePath());
+				osveziListuDobavljaca(lista);
+			}	
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(),
+					"Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public static void ucitajIzFajlaZaposleni(JList lista) {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showOpenDialog(glavniProzor.getContentPane());
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				prodavnica.ucitajUFajlZaposleni(file.getAbsolutePath());
+				glavniProzor.getZaposleniList().setListData(prodavnica.getZaposleni().toArray());
+			}	
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(),
+					"Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public static void sacuvajUFajlZaposleni() {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showSaveDialog(glavniProzor.getContentPane());
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+
+				prodavnica.sacuvajUFajlZaposleni(file.getAbsolutePath());
+			}
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(),
+					"Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public static void sacuvajUFajlKupac() {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showSaveDialog(glavniProzor.getContentPane());
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+
+				prodavnica.sacuvajUFajlKupac(file.getAbsolutePath());
+			}
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(),
+					"Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public static void sacuvajUFajlDobavljac() {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showSaveDialog(glavniProzor.getContentPane());
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+
+				prodavnica.sacuvajUFajlDobavljac(file.getAbsolutePath());
+			}
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(),
+					"Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public static void primiNarudzbenicu (Kupac k, String imeProizvoda, String id, int kolicina, double cena) {
+		Proizvod p = new Proizvod();
+		p.setCena(cena);
+		p.setId(id);
+		p.setKolicina(kolicina);
+		p.setNaziv(imeProizvoda);
+		
+		prodavnica.primiNarudzbinu(k, p);
+		
+		glavniProzor.getTextField_stanjeNaRacunu().setText(""+prodavnica.getTekuciRacun());
+	}
+	
+	public static void prikaziPrimiNarudzbinu() {
+		PrimiNarudzbinuGUI prozor = new PrimiNarudzbinuGUI();
+		prozor.setVisible(true);
+		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
+	}
+	
+	public static void osveziStanjeNaRacunu(JTextField field) {
+		field.setText(""+prodavnica.getTekuciRacun());
 	}
 
 }

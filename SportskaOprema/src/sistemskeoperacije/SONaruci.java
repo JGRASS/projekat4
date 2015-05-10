@@ -8,10 +8,16 @@ import prodavnica.Proizvod;
 public class SONaruci {
 	
 	public static void naruci(Dobavljac d, Proizvod p, LinkedList<Proizvod> proizvodi, double tekRacun, LinkedList<Dobavljac> dobavljaci) {
-		if(!proizvodi.contains(p))
-			throw new RuntimeException("Dobavljac ne poseduje ovaj proizvod.");
+		
 		if(!dobavljaci.contains(d))
 			dobavljaci.add(d);
+		if(!d.getProizvodi().contains(p))
+			throw new RuntimeException("Dobavljac ne poseduje ovaj proizvod.");
+		if(!proizvodi.contains(p)) {
+			proizvodi.add(p);
+			tekRacun -= p.getCena()*p.getKolicina();
+			return;
+		}
 		
 		for (int i = 0; i < d.getProizvodi().size(); i++) {
 			if (d.getProizvodi().get(i).equals(p) && p.getKolicina() <= d.getProizvodi().get(i).getKolicina()) {
@@ -22,6 +28,7 @@ public class SONaruci {
 						break;
 					}
 				}
+				break;
 			}
 		}
 	}

@@ -15,25 +15,27 @@ import javax.swing.JTextField;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JLayeredPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JButton;
+
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.ImageIcon;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 public class ProdavnicaGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 	private JMenu mnFile;
-	private JMenu mnIzvestaji;
-	private JMenuItem mntmDnevni;
-	private JMenuItem mntmNedeljni;
-	private JMenuItem mntmMesecni;
 	private JMenuItem mntmOpen;
 	private JMenuItem mntmSave;
 	private JMenuItem mntmExit;
@@ -44,7 +46,6 @@ public class ProdavnicaGUI extends JFrame {
 	private JMenu mnZaposleni;
 	private JMenuItem mntmDodajZaposlenog;
 	private JMenuItem mntmAboutProgram;
-	private JMenuItem mntmNarudzbenica;
 	private JTabbedPane tabbedPane;
 	private JLayeredPane layeredPane_Prodaja;
 	private JLayeredPane layeredPane_Nabavka;
@@ -59,12 +60,21 @@ public class ProdavnicaGUI extends JFrame {
 	private JButton btnDodajProizvod;
 	private JButton btnDodajZaposlenog;
 	private JButton btnPronai;
+	private JButton btnNaruci;
 
 
 	/**
 	 * Create the frame.
 	 */
 	public ProdavnicaGUI() {
+		addWindowFocusListener(new WindowFocusListener() {
+			public void windowGainedFocus(WindowEvent arg0) {
+				GUIKontroler.osveziStanjeNaRacunu(textField_stanjeNaRacunu);
+				GUIKontroler.osveziListuKupaca(ProdajaList);
+			}
+			public void windowLostFocus(WindowEvent arg0) {
+			}
+		});
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -72,7 +82,7 @@ public class ProdavnicaGUI extends JFrame {
 			}
 		});
 		setTitle("Prodavnica");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 569, 382);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
@@ -89,7 +99,6 @@ public class ProdavnicaGUI extends JFrame {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
 			menuBar.add(getMnFile());
-			menuBar.add(getMnIzvestaji());
 			menuBar.add(getMnZaposleni());
 			menuBar.add(getMnAbout());
 		}
@@ -104,37 +113,25 @@ public class ProdavnicaGUI extends JFrame {
 		}
 		return mnFile;
 	}
-	private JMenu getMnIzvestaji() {
-		if (mnIzvestaji == null) {
-			mnIzvestaji = new JMenu("Izvestaji");
-			mnIzvestaji.add(getMntmDnevni());
-			mnIzvestaji.add(getMntmNedeljni());
-			mnIzvestaji.add(getMntmMesecni());
-			mnIzvestaji.add(getMntmNarudzbenica());
-		}
-		return mnIzvestaji;
-	}
-	private JMenuItem getMntmDnevni() {
-		if (mntmDnevni == null) {
-			mntmDnevni = new JMenuItem("Dnevni");
-		}
-		return mntmDnevni;
-	}
-	private JMenuItem getMntmNedeljni() {
-		if (mntmNedeljni == null) {
-			mntmNedeljni = new JMenuItem("Nedeljni");
-		}
-		return mntmNedeljni;
-	}
-	private JMenuItem getMntmMesecni() {
-		if (mntmMesecni == null) {
-			mntmMesecni = new JMenuItem("Mesecni");
-		}
-		return mntmMesecni;
-	}
 	private JMenuItem getMntmOpen() {
 		if (mntmOpen == null) {
 			mntmOpen = new JMenuItem("Open");
+			mntmOpen.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					if (tabbedPane.getSelectedIndex() == 0) {
+						GUIKontroler.ucitajIzFajlaKupac(ProdajaList);
+						}
+					
+					if(tabbedPane.getSelectedIndex() == 1) {
+						GUIKontroler.ucitajIzFajlaDobavljac(nabavkaList);
+						}
+					
+					if (tabbedPane.getSelectedIndex() == 2) {
+						GUIKontroler.ucitajIzFajlaZaposleni(zaposleniList);
+						}
+					
+				}
+			});
 			mntmOpen.setIcon(new ImageIcon(ProdavnicaGUI.class.getResource("/javax/swing/plaf/metal/icons/ocean/directory.gif")));
 		}
 		return mntmOpen;
@@ -142,6 +139,22 @@ public class ProdavnicaGUI extends JFrame {
 	private JMenuItem getMntmSave() {
 		if (mntmSave == null) {
 			mntmSave = new JMenuItem("Save");
+			mntmSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					if (tabbedPane.getSelectedIndex() == 0) {
+						GUIKontroler.sacuvajUFajlKupac();
+						}
+					
+					if(tabbedPane.getSelectedIndex() == 1) {
+						GUIKontroler.sacuvajUFajlDobavljac();
+						}
+					
+					if (tabbedPane.getSelectedIndex() == 2) {
+						GUIKontroler.sacuvajUFajlZaposleni();
+						}
+					
+				}
+			});
 			mntmSave.setIcon(new ImageIcon(ProdavnicaGUI.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
 		}
 		return mntmSave;
@@ -178,9 +191,10 @@ public class ProdavnicaGUI extends JFrame {
 		}
 		return lbl_stanjeNaRacunu;
 	}
-	private JTextField getTextField_stanjeNaRacunu() {
+	protected JTextField getTextField_stanjeNaRacunu() {
 		if (textField_stanjeNaRacunu == null) {
 			textField_stanjeNaRacunu = new JTextField();
+			textField_stanjeNaRacunu.setEditable(false);
 			textField_stanjeNaRacunu.setColumns(10);
 		}
 		return textField_stanjeNaRacunu;
@@ -214,12 +228,6 @@ public class ProdavnicaGUI extends JFrame {
 			});
 		}
 		return mntmAboutProgram;
-	}
-	private JMenuItem getMntmNarudzbenica() {
-		if (mntmNarudzbenica == null) {
-			mntmNarudzbenica = new JMenuItem("Narudzbenica");
-		}
-		return mntmNarudzbenica;
 	}
 	private JTabbedPane getTabbedPane() {
 		if (tabbedPane == null) {
@@ -262,7 +270,7 @@ public class ProdavnicaGUI extends JFrame {
 		}
 		return scrollPane;
 	}
-	private JList getProdajaList() {
+	protected JList getProdajaList() {
 		if (ProdajaList == null) {
 			ProdajaList = new JList();
 		}
@@ -275,7 +283,7 @@ public class ProdavnicaGUI extends JFrame {
 		}
 		return scrollPane_1;
 	}
-	private JList getNabavkaList() {
+	protected JList getNabavkaList() {
 		if (nabavkaList == null) {
 			nabavkaList = new JList();
 		}
@@ -300,13 +308,14 @@ public class ProdavnicaGUI extends JFrame {
 			panel_1.setLayout(new MigLayout("", "[105px]", "[23px][][][][][]"));
 			panel_1.add(getBtnDodajProizvod(), "cell 0 1,growx,aligny top");
 			panel_1.add(getBtnDodajZaposlenog(), "cell 0 2");
-			panel_1.add(getBtnPronai(), "cell 0 4,growx");
+			panel_1.add(getBtnPronai(), "cell 0 3,growx");
+			panel_1.add(getBtnNaruci(), "cell 0 4,growx");
 		}
 		return panel_1;
 	}
 	private JButton getBtnDodajProizvod() {
 		if (btnDodajProizvod == null) {
-			btnDodajProizvod = new JButton("Dodaj");
+			btnDodajProizvod = new JButton("Izmeni");
 			btnDodajProizvod.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					GUIKontroler.prikaziDodaj();
@@ -337,5 +346,16 @@ public class ProdavnicaGUI extends JFrame {
 			});
 		}
 		return btnPronai;
+	}
+	private JButton getBtnNaruci() {
+		if (btnNaruci == null) {
+			btnNaruci = new JButton("Primi narudzbinu");
+			btnNaruci.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziPrimiNarudzbinu();
+				}
+			});
+		}
+		return btnNaruci;
 	}
 }
