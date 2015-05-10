@@ -299,14 +299,21 @@ public class GUIKontroler extends JFrame {
 		}
 	}
 	
-	public static void primiNarudzbenicu (Kupac k, String imeProizvoda, String id, int kolicina, double cena) {
-		Proizvod p = new Proizvod();
-		p.setCena(cena);
-		p.setId(id);
-		p.setKolicina(kolicina);
-		p.setNaziv(imeProizvoda);
-		
-		prodavnica.primiNarudzbinu(k, p);
+	public static void primiNarudzbenicu (Kupac k, String imeProizvoda, String id, String kolicina, double cena) {
+		try {
+			Proizvod p = new Proizvod();
+			p.setCena(cena);
+			p.setId(id);
+			p.setKolicina(Integer.parseInt(kolicina));
+			p.setNaziv(imeProizvoda);
+			
+			prodavnica.primiNarudzbinu(k, p);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+					"Pogresno uneta vrednost", "Greska",
+					JOptionPane.ERROR_MESSAGE);
+			
+		}
 		
 		glavniProzor.getTextField_stanjeNaRacunu().setText(""+prodavnica.getTekuciRacun());
 	}
@@ -319,6 +326,21 @@ public class GUIKontroler extends JFrame {
 	
 	public static void osveziStanjeNaRacunu(JTextField field) {
 		field.setText(""+prodavnica.getTekuciRacun());
+	}
+	public static boolean proverIdProizvoda(String id){
+		return prodavnica.proveriIdProizvoda(id);
+	}
+
+
+	public static boolean proveriIdKupca(String id) {
+		
+		return prodavnica.proveriIdKupca(id);
+	}
+
+
+	public static boolean proveriIdDobavljaca(String id) {
+		
+		return prodavnica.proveriIdDobavljaca(id);
 	}
 
 }

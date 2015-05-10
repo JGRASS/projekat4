@@ -19,6 +19,9 @@ import sistemskeoperacije.SOPrimiNarudzbinu;
 import sistemskeoperacije.SOPronadjiDobavljaca;
 import sistemskeoperacije.SOPronadjiKupca;
 import sistemskeoperacije.SOPronadjiProizvod;
+import sistemskeoperacije.SOProveriIdDobavljaca;
+import sistemskeoperacije.SOProveriIdKupca;
+import sistemskeoperacije.SOProveriIdProizvoda;
 import sistemskeoperacije.SOSacuvajUFajlDobavljac;
 import sistemskeoperacije.SOSacuvajUFajlKupac;
 import sistemskeoperacije.SOSacuvajUFajlZaposleni;
@@ -44,7 +47,7 @@ public class Prodavnica {
 	}
 	
 	public void primiNarudzbinu(Kupac k, Proizvod p) {
-		SOPrimiNarudzbinu.primiNarudzbinu(k, p, kupci, proizvodi, tekuciRacun);
+		tekuciRacun= SOPrimiNarudzbinu.primiNarudzbinu(k, p, kupci, proizvodi, tekuciRacun);
 	}
 	
 	public Kupac prondadjiKupca(String ime) {
@@ -172,5 +175,20 @@ public class Prodavnica {
 	
 	public void ucitajUFajlZaposleni(String putanja) {
 		SOUcitajIzFajlaZaposleni.ucitajIzFajla(putanja, zaposleni);
+	}
+
+	public boolean proveriIdProizvoda(String id) {
+		return SOProveriIdProizvoda.proveriIdProizvoda(id, proizvodi);
+		
+	}
+
+	public boolean proveriIdKupca(String id) {
+		
+		return SOProveriIdKupca.proveriIdKupca(id, kupci);
+	}
+
+	public boolean proveriIdDobavljaca(String id) {
+		
+		return SOProveriIdDobavljaca.proveriIdDobavljaca(id, dobavljaci);
 	}
 }

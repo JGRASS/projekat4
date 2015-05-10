@@ -12,15 +12,22 @@ import javax.swing.JList;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import prodavnica.Kupac;
+import prodavnica.Proizvod;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowEvent;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
+import java.awt.Font;
 
 public class PrimiNarudzbinuGUI extends JFrame {
 
@@ -38,23 +45,28 @@ public class PrimiNarudzbinuGUI extends JFrame {
 	private JTextField cenatextField;
 	private JButton btnDodajKupca;
 	private JButton btnOk;
+	private JPanel panel_1;
+	private JScrollPane scrollPane_1;
+	private JList Proizvodilist;
 
 
 	/**
 	 * Create the frame.
 	 */
 	public PrimiNarudzbinuGUI() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PrimiNarudzbinuGUI.class.getResource("/Icons/hg.jpg")));
+		setResizable(false);
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent arg0) {
 				GUIKontroler.osveziListuKupaca(KupciList);
+				GUIKontroler.osveziListuProizvoda(Proizvodilist);
 			}
 			public void windowLostFocus(WindowEvent arg0) {
 			}
 		});
 		setTitle("Primi narudzbinu");
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 547, 314);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -62,18 +74,21 @@ public class PrimiNarudzbinuGUI extends JFrame {
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.EAST);
 		GUIKontroler.osveziListuKupaca(KupciList);
+		GUIKontroler.osveziListuProizvoda(Proizvodilist);
 	}
 
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
 			scrollPane.setViewportView(getKupciList());
+			scrollPane.setColumnHeaderView(getPanel_1());
 		}
 		return scrollPane;
 	}
 	private JList getKupciList() {
 		if (KupciList == null) {
 			KupciList = new JList();
+			KupciList.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		}
 		return KupciList;
 	}
@@ -122,7 +137,7 @@ public class PrimiNarudzbinuGUI extends JFrame {
 	}
 	private JLabel getLblKolicina() {
 		if (lblKolicina == null) {
-			lblKolicina = new JLabel("Kolicina");
+			lblKolicina = new JLabel("Koli\u010Dina");
 		}
 		return lblKolicina;
 	}
@@ -162,11 +177,52 @@ public class PrimiNarudzbinuGUI extends JFrame {
 			btnOk = new JButton("Ok");
 			btnOk.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.primiNarudzbenicu(((Kupac) KupciList.getSelectedValue()), imeProizvodatextField.getText(), idProizvodatextField.getText(), Integer.parseInt(kolicinatextField.getText()), Double.parseDouble(cenatextField.getText()));
+					GUIKontroler.primiNarudzbenicu(((Kupac) KupciList.getSelectedValue()), imeProizvodatextField.getText(), idProizvodatextField.getText(), kolicinatextField.getText(), Double.parseDouble(cenatextField.getText()));
 					dispose();
 				}
 			});
 		}
 		return btnOk;
+	}
+	private JPanel getPanel_1() {
+		if (panel_1 == null) {
+			panel_1 = new JPanel();
+			panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+			panel_1.add(getScrollPane_1());
+		}
+		return panel_1;
+	}
+	private JScrollPane getScrollPane_1() {
+		if (scrollPane_1 == null) {
+			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setViewportView(getProizvodilist());
+		}
+		return scrollPane_1;
+	}
+	private JList getProizvodilist() {
+		if (Proizvodilist == null) {
+			Proizvodilist = new JList();
+			Proizvodilist.setFont(new Font("Tahoma", Font.PLAIN, 10));
+			Proizvodilist.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					try {
+						Proizvod p= (Proizvod)(Proizvodilist.getSelectedValue());
+						imeProizvodatextField.setText(p.getNaziv());
+						imeProizvodatextField.setEditable(false);
+						idProizvodatextField.setText(p.getId());
+						idProizvodatextField.setEditable(false);
+						cenatextField.setText(p.getCena()+"");
+						cenatextField.setEditable(false);
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(contentPane,
+								"Lista je prazna", "Greska",
+								JOptionPane.ERROR_MESSAGE);
+					}
+					
+				}
+			});
+		}
+		return Proizvodilist;
 	}
 }
