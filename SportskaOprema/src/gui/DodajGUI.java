@@ -158,20 +158,16 @@ public class DodajGUI extends JFrame {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if(tabbedPane.getSelectedIndex()==0){
-						if(GUIKontroler.proverIdProizvoda(textField.getText())){
+						
 						GUIKontroler.dodajProizvod(textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText());
 						list.setListData(GUIKontroler.prikaziProizvode().toArray());
 						textField.setText("");
 						textField_1.setText("");
 						textField_2.setText("");
 						textField_3.setText("");
-						}
-						else {
-							textField.setText("ID vec zauzet");
-						}
+						
 					}
 					if(tabbedPane.getSelectedIndex()==1){
-						if(GUIKontroler.proveriIdKupca(textField_4.getText())){
 						GUIKontroler.dodajKupca(textField_4.getText(),textField_5.getText(),textField_6.getText());
 						list_1.setListData(GUIKontroler.prikaziSveKupce().toArray());
 						
@@ -179,21 +175,13 @@ public class DodajGUI extends JFrame {
 						textField_5.setText("");
 						textField_6.setText("");
 					}
-						else{
-							textField_4.setText("ID vec zauzet");
-						}
-					}
 					if(tabbedPane.getSelectedIndex()==2){
-						if(GUIKontroler.proveriIdDobavljaca(textField_7.getText())){
 						GUIKontroler.dodajDobavljaca(textField_7.getText(),textField_8.getText(),textField_9.getText(),textField_10.getText());
 						list_2.setListData(GUIKontroler.prikaziSveDobavljace().toArray());
 						textField_7.setText("");
 						textField_8.setText("");
 						textField_9.setText("");
 						textField_10.setText("");
-						}else{
-							textField_7.setText("ID vec zauzet");
-						}
 					}
 				}
 			});
