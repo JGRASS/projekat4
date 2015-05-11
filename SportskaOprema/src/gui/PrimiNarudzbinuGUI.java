@@ -177,8 +177,16 @@ public class PrimiNarudzbinuGUI extends JFrame {
 			btnOk = new JButton("Ok");
 			btnOk.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					Proizvod c=(Proizvod)(Proizvodilist.getSelectedValue());
+					if(Integer.parseInt(kolicinatextField.getText())<=c.getKolicina()){
 					GUIKontroler.primiNarudzbenicu(((Kupac) KupciList.getSelectedValue()), imeProizvodatextField.getText(), idProizvodatextField.getText(), kolicinatextField.getText(), Double.parseDouble(cenatextField.getText()));
 					dispose();
+					}
+					else{
+						JOptionPane.showMessageDialog(contentPane,
+								"Nema dovoljno proizvoda", "Greska",
+								JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			});
 		}

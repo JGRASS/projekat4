@@ -1,6 +1,8 @@
 package prodavnica;
 
-public class Kupac {
+import java.io.Serializable;
+
+public class Kupac implements Serializable {
 private String id;
 private String ime;
 /**

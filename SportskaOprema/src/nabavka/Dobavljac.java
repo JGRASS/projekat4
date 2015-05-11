@@ -1,10 +1,11 @@
 package nabavka;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 import prodavnica.Proizvod;
 
-public class Dobavljac {
+public class Dobavljac implements Serializable {
 	
 	private String dobavljacId, ime, adresa, telefon;
 	private LinkedList<Proizvod> proizvodi = new LinkedList<Proizvod>();

@@ -149,13 +149,14 @@ public class GUIKontroler extends JFrame {
 
 
 	public static void dodajDobavljaca(String Id, String ime, String adresa,
-			String telefon) {
+			String telefon, LinkedList<Proizvod> proizvodi) {
 		try {
 			Dobavljac p= new Dobavljac();
 			p.setDobavljacId(Id);
 			p.setIme(ime);
 			p.setAdresa(adresa);
 			p.setTelefon(telefon);
+			p.setProizvodi(proizvodi);
 			prodavnica.dodajDobavljaca(p);
 			
 			glavniProzor.getNabavkaList().setListData(prodavnica.getDobavljaci().toArray());
@@ -344,36 +345,25 @@ public class GUIKontroler extends JFrame {
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public static void dodajProizvodDobavljaca(String ime, String id, double cena, int kolicina, Dobavljac d) {
-		Proizvod p = new Proizvod();
-		p.setCena(cena);
-		p.setId(id);
-		p.setKolicina(kolicina);
-		p.setNaziv(ime);
-		
-		prodavnica.dodajProizvodDobavljaca(p, d);
+	public static void dodajProizvodDobavljaca(String ime, String id, String cena, String kolicina, Dobavljac d) {
+		try {
+			Proizvod p = new Proizvod();
+			p.setCena(Double.parseDouble(cena));
+			p.setId(id);
+			p.setKolicina(Integer.parseInt(kolicina));
+			p.setNaziv(ime);
+			
+			prodavnica.dodajProizvodDobavljaca(p, d);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+					"Pogresno uneta vrednost", "Greska",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
-	public static void prikaziDodajProizvodDobavljaca() {
-		DodajProizvodDobavljacaGUI prozor = new DodajProizvodDobavljacaGUI();
+	public static void prikaziDodajProizvodDobavljaca(Dobavljac p) {
+		
+		DodajProizvodDobavljacaGUI prozor = new DodajProizvodDobavljacaGUI(p);
 		prozor.setVisible(true);
 		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
 	}
@@ -388,5 +378,35 @@ public class GUIKontroler extends JFrame {
 		}
 		
 		lista.setListData(d.getProizvodi().toArray());
+	}
+
+
+	public static Dobavljac pretraziDobavljace(String id) {
+		
+		return prodavnica.pretraziDobavljace(id);
+	}
+	public static void naruciProizvod(Dobavljac dobavljac, String id,
+			String cena, String naziv, String kolicina) {
+		try {
+			Proizvod p=new Proizvod();
+			p.setId(id);
+			p.setNaziv(naziv);
+			p.setCena(Double.parseDouble(cena));
+			p.setKolicina(Integer.parseInt(kolicina));
+			prodavnica.naruci(p, dobavljac);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+					"Pogresno uneta vrednost", "Greska",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+
+
+	public static void prikaziNaruciProizvod() {
+		Naruci p= new Naruci(prodavnica.getTekuciRacun());
+		p.setVisible(true);
+		p.setLocationRelativeTo(glavniProzor.getContentPane());
+		
 	}
 }

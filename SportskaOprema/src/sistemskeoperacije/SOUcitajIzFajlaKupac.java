@@ -16,8 +16,9 @@ public class SOUcitajIzFajlaKupac {
 			ObjectInputStream in = new ObjectInputStream(
 					new BufferedInputStream(new FileInputStream(putanja)));
 			
-			kupci = (LinkedList<Kupac>)(in.readObject());
-			
+			LinkedList<Kupac>kupci2 = (LinkedList<Kupac>)(in.readObject());
+			kupci.clear();
+			kupci.addAll(kupci2);
 			in.close();
 		}catch(Exception e){
 			throw new RuntimeException(e);

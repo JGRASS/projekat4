@@ -1,9 +1,10 @@
 package prodavnica;
 
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Zaposleni {
+public class Zaposleni implements Serializable{
 	
 	private String ime;
 	private String prezime;

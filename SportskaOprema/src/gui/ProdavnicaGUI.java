@@ -61,6 +61,7 @@ public class ProdavnicaGUI extends JFrame {
 	private JButton btnDodajZaposlenog;
 	private JButton btnPronai;
 	private JButton btnNaruci;
+	private JButton btnNewButton;
 
 
 	/**
@@ -71,6 +72,7 @@ public class ProdavnicaGUI extends JFrame {
 			public void windowGainedFocus(WindowEvent arg0) {
 				GUIKontroler.osveziStanjeNaRacunu(textField_stanjeNaRacunu);
 				GUIKontroler.osveziListuKupaca(ProdajaList);
+				
 			}
 			public void windowLostFocus(WindowEvent arg0) {
 			}
@@ -83,7 +85,7 @@ public class ProdavnicaGUI extends JFrame {
 		});
 		setTitle("Prodavnica");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 569, 382);
+		setBounds(100, 100, 656, 397);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -310,12 +312,13 @@ public class ProdavnicaGUI extends JFrame {
 			panel_1.add(getBtnDodajZaposlenog(), "cell 0 2");
 			panel_1.add(getBtnPronai(), "cell 0 3,growx");
 			panel_1.add(getBtnNaruci(), "cell 0 4,growx");
+			panel_1.add(getBtnNewButton(), "cell 0 5");
 		}
 		return panel_1;
 	}
 	private JButton getBtnDodajProizvod() {
 		if (btnDodajProizvod == null) {
-			btnDodajProizvod = new JButton("Izmeni");
+			btnDodajProizvod = new JButton("Dodaj/Obrisi");
 			btnDodajProizvod.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					GUIKontroler.prikaziDodaj();
@@ -357,5 +360,16 @@ public class ProdavnicaGUI extends JFrame {
 			});
 		}
 		return btnNaruci;
+	}
+	private JButton getBtnNewButton() {
+		if (btnNewButton == null) {
+			btnNewButton = new JButton("Naruci proizvode  ");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziNaruciProizvod();
+				}
+			});
+		}
+		return btnNewButton;
 	}
 }

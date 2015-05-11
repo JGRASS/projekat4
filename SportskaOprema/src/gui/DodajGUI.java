@@ -160,7 +160,7 @@ public class DodajGUI extends JFrame {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if(tabbedPane.getSelectedIndex()==0){
-						if(GUIKontroler.proverIdProizvoda(textField.getText())){
+						if(GUIKontroler.proverIdProizvoda(textField.getText())){			
 						GUIKontroler.dodajProizvod(textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText());
 						list.setListData(GUIKontroler.prikaziProizvode().toArray());
 						textField.setText("");
@@ -187,7 +187,8 @@ public class DodajGUI extends JFrame {
 					}
 					if(tabbedPane.getSelectedIndex()==2){
 						if(GUIKontroler.proveriIdDobavljaca(textField_7.getText())){
-						GUIKontroler.dodajDobavljaca(textField_7.getText(),textField_8.getText(),textField_9.getText(),textField_10.getText());
+							LinkedList<Proizvod> proizvodi=new LinkedList<Proizvod>();
+						GUIKontroler.dodajDobavljaca(textField_7.getText(),textField_8.getText(),textField_9.getText(),textField_10.getText(),proizvodi);
 						list_2.setListData(GUIKontroler.prikaziSveDobavljace().toArray());
 						textField_7.setText("");
 						textField_8.setText("");
@@ -517,6 +518,7 @@ public class DodajGUI extends JFrame {
 						textField_9.setEditable(false);
 						textField_10.setText(p.getTelefon());
 						textField_10.setEditable(false);
+						btnDodajProizvodDobavljaca.setEnabled(true);
 					} catch (Exception e) {
 						
 						JOptionPane.showMessageDialog(contentPane,
@@ -533,12 +535,13 @@ public class DodajGUI extends JFrame {
 	private JButton getBtnDodajProizvodDobavljaca() {
 		if (btnDodajProizvodDobavljaca == null) {
 			btnDodajProizvodDobavljaca = new JButton("Dodaj proizvod dobavljaca");
+			btnDodajProizvodDobavljaca.setEnabled(false);
 			btnDodajProizvodDobavljaca.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.prikaziDodajProizvodDobavljaca();
+					GUIKontroler.prikaziDodajProizvodDobavljaca(GUIKontroler.pretraziDobavljace(textField_7.getText()));
 				}
 			});
-			btnDodajProizvodDobavljaca.setBounds(20, 252, 163, 23);
+			btnDodajProizvodDobavljaca.setBounds(0, 252, 187, 23);
 		}
 		return btnDodajProizvodDobavljaca;
 	}

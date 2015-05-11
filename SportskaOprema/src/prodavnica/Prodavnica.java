@@ -13,6 +13,7 @@ import sistemskeoperacije.SOIzbrisiKupca;
 import sistemskeoperacije.SOIzbrisiProizvod;
 import sistemskeoperacije.SONaruci;
 import sistemskeoperacije.SOOtpustiZaposlenog;
+import sistemskeoperacije.SOPretraziDobavljace;
 import sistemskeoperacije.SOPrikaziSveDobavljace;
 import sistemskeoperacije.SOPrikaziSveKupce;
 import sistemskeoperacije.SOPrikaziSveProizvode;
@@ -33,14 +34,14 @@ import nabavka.Dobavljac;
 
 public class Prodavnica {
 	
-	private double tekuciRacun;
+	private double tekuciRacun=1000;
 	private LinkedList<Kupac> kupci = new LinkedList<Kupac>();
 	private LinkedList<Proizvod> proizvodi = new LinkedList<Proizvod>();
 	private LinkedList<Dobavljac> dobavljaci = new LinkedList<Dobavljac>();
 	private LinkedList<Zaposleni> zaposleni = new LinkedList<Zaposleni>();
 	
 	public void naruci(Proizvod p, Dobavljac d) {
-			SONaruci.naruci(d, p, proizvodi, tekuciRacun, dobavljaci);
+			tekuciRacun=SONaruci.naruci(d, p, proizvodi, tekuciRacun, dobavljaci);
 	}
 	
 	public boolean daLiImaPopust(Kupac kupac) {
@@ -193,25 +194,12 @@ public class Prodavnica {
 		return SOProveriIdDobavljaca.proveriIdDobavljaca(id, dobavljaci);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public void dodajProizvodDobavljaca(Proizvod p, Dobavljac d) {
 		SODodajProizvocDobavljaca.dodaj(p, d, dobavljaci);
+	}
+
+	public Dobavljac pretraziDobavljace(String id) {
+		
+		return SOPretraziDobavljace.pretraziDobavljace(id, dobavljaci);
 	}
 }

@@ -16,8 +16,9 @@ public class SOUcitajIzFajlaZaposleni {
 			ObjectInputStream in = new ObjectInputStream(
 					new BufferedInputStream(new FileInputStream(putanja)));
 			
-			dobavljaci = (LinkedList<Zaposleni>)(in.readObject());
-			
+			LinkedList<Zaposleni> dobavljaci2 = (LinkedList<Zaposleni>)(in.readObject());
+			dobavljaci.clear();
+			dobavljaci.addAll(dobavljaci2);
 			in.close();
 		}catch(Exception e){
 			throw new RuntimeException(e);

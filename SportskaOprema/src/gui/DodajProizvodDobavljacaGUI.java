@@ -36,12 +36,12 @@ public class DodajProizvodDobavljacaGUI extends JFrame {
 	private JButton btnOdustani;
 	private JScrollPane scrollPane;
 	private JList list;
-
+    private Dobavljac c=new Dobavljac();
 
 	/**
 	 * Create the frame.
 	 */
-	public DodajProizvodDobavljacaGUI() {
+	public DodajProizvodDobavljacaGUI(Dobavljac p) {
 		setTitle("Dodaj proizvod");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -61,7 +61,8 @@ public class DodajProizvodDobavljacaGUI extends JFrame {
 		contentPane.add(getBtnOk());
 		contentPane.add(getBtnOdustani());
 		contentPane.add(getScrollPane());
-		GUIKontroler.osveziListuDobavljaca(list);
+		c=p;
+		list.setListData(c.getProizvodi().toArray());
 	}
 
 	private JLabel getLblNazivProizvoda() {
@@ -134,8 +135,8 @@ public class DodajProizvodDobavljacaGUI extends JFrame {
 			btnOk.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {		
 					GUIKontroler.dodajProizvodDobavljaca(textField.getText(),
-							textField_1.getText(), Double.parseDouble(textField_2.getText()), 
-							Integer.parseInt(textField_3.getText()), (Dobavljac) list.getSelectedValue());
+							textField_1.getText(), textField_2.getText(), 
+							textField_3.getText(),c);
 					dispose();
 				}
 			});

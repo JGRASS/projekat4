@@ -1,6 +1,8 @@
 package prodavnica;
 
-public class Proizvod {
+import java.io.Serializable;
+
+public class Proizvod implements Serializable {
 	
 private String id;
 private String naziv;
