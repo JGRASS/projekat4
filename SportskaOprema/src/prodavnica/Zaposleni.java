@@ -68,5 +68,22 @@ public class Zaposleni {
 				+ ", prezime: " + prezime + ", pol: " + pol + ", brTelefona: "
 				+ brTelefona + ", adresa: " + adresa + "]";
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Zaposleni other = (Zaposleni) obj;
+		if (ID_zaposlenog == null) {
+			if (other.ID_zaposlenog != null)
+				return false;
+		} else if (!ID_zaposlenog.equals(other.ID_zaposlenog))
+			return false;
+		return true;
+	}
 
 }

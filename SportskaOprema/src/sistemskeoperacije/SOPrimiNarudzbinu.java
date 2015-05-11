@@ -23,8 +23,5 @@ public class SOPrimiNarudzbinu {
 			}
 		}
 		return racun;
-		
-		
-
 	}
 }

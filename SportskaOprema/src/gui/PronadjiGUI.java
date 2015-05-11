@@ -63,21 +63,6 @@ public class PronadjiGUI extends JFrame {
 	private JLabel lblObavetenje;
 	private JTextField dobObavestenjetextField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PronadjiGUI frame = new PronadjiGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -203,6 +188,7 @@ public class PronadjiGUI extends JFrame {
 							dobTelefonTextField.setText(GUIKontroler.pronadjiDobavljaca(imeDobavljacTextField.getText()).getTelefon());
 							dobObavestenjetextField.setText("Dobavljač je pronađen.");
 							dobavljacProizvodilist.setListData(GUIKontroler.pronadjiDobavljaca(imeDobavljacTextField.getText()).getProizvodi().toArray());
+							GUIKontroler.osveziListuProizvodaDobavljaca(dobavljacProizvodilist, imeDobavljacTextField.getText());
 						} else {
 							dobavljacIDTextField.setText("");
 							dobAdresaTextField.setText("");

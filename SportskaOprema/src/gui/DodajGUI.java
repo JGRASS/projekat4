@@ -66,6 +66,7 @@ public class DodajGUI extends JFrame {
 	private JTextField textField_9;
 	private JTextField textField_10;
 	private JList list_2;
+	private JButton btnDodajProizvodDobavljaca;
 
 
 	/**
@@ -140,6 +141,7 @@ public class DodajGUI extends JFrame {
 			panel_2.add(getTextField_9());
 			panel_2.add(getTextField_10());
 			panel_2.add(getList_2());
+			panel_2.add(getBtnDodajProizvodDobavljaca());
 		}
 		return panel_2;
 	}
@@ -527,5 +529,17 @@ public class DodajGUI extends JFrame {
 			list_2.setBounds(193, 14, 408, 260);
 		}
 		return list_2;
+	}
+	private JButton getBtnDodajProizvodDobavljaca() {
+		if (btnDodajProizvodDobavljaca == null) {
+			btnDodajProizvodDobavljaca = new JButton("Dodaj proizvod dobavljaca");
+			btnDodajProizvodDobavljaca.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziDodajProizvodDobavljaca();
+				}
+			});
+			btnDodajProizvodDobavljaca.setBounds(20, 252, 163, 23);
+		}
+		return btnDodajProizvodDobavljaca;
 	}
 }

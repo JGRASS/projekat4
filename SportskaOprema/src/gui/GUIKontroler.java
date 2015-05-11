@@ -343,4 +343,50 @@ public class GUIKontroler extends JFrame {
 		return prodavnica.proveriIdDobavljaca(id);
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void dodajProizvodDobavljaca(String ime, String id, double cena, int kolicina, Dobavljac d) {
+		Proizvod p = new Proizvod();
+		p.setCena(cena);
+		p.setId(id);
+		p.setKolicina(kolicina);
+		p.setNaziv(ime);
+		
+		prodavnica.dodajProizvodDobavljaca(p, d);
+	}
+	
+	public static void prikaziDodajProizvodDobavljaca() {
+		DodajProizvodDobavljacaGUI prozor = new DodajProizvodDobavljacaGUI();
+		prozor.setVisible(true);
+		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
+	}
+	
+	public static void osveziListuProizvodaDobavljaca (JList lista, String ime) {
+		Dobavljac d = new Dobavljac();
+		for (int i = 0; i < prodavnica.getDobavljaci().size(); i++) {
+			if (prodavnica.getDobavljaci().get(i).getIme().equals(ime)) {
+				d = prodavnica.getDobavljaci().get(i);
+				break;
+			}
+		}
+		
+		lista.setListData(d.getProizvodi().toArray());
+	}
 }

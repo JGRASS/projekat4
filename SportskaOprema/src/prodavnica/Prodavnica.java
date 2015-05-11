@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import sistemskeoperacije.SODaLiImaPopust;
 import sistemskeoperacije.SODodajDobavljaca;
 import sistemskeoperacije.SODodajKupca;
+import sistemskeoperacije.SODodajProizvocDobavljaca;
 import sistemskeoperacije.SODodajProizvod;
 import sistemskeoperacije.SODodajZaposlenog;
 import sistemskeoperacije.SOIzbrisiDobavljaca;
@@ -39,11 +40,11 @@ public class Prodavnica {
 	private LinkedList<Zaposleni> zaposleni = new LinkedList<Zaposleni>();
 	
 	public void naruci(Proizvod p, Dobavljac d) {
-		SONaruci.naruci(d, p, proizvodi, tekuciRacun, dobavljaci);
+			SONaruci.naruci(d, p, proizvodi, tekuciRacun, dobavljaci);
 	}
 	
-	public void daLiImaPopust(Kupac kupac) {
-		SODaLiImaPopust.daLiImaPopust(kupac, kupci);
+	public boolean daLiImaPopust(Kupac kupac) {
+		return SODaLiImaPopust.daLiImaPopust(kupac, kupci);
 	}
 	
 	public void primiNarudzbinu(Kupac k, Proizvod p) {
@@ -190,5 +191,27 @@ public class Prodavnica {
 	public boolean proveriIdDobavljaca(String id) {
 		
 		return SOProveriIdDobavljaca.proveriIdDobavljaca(id, dobavljaci);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void dodajProizvodDobavljaca(Proizvod p, Dobavljac d) {
+		SODodajProizvocDobavljaca.dodaj(p, d, dobavljaci);
 	}
 }

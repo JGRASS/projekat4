@@ -53,5 +53,22 @@ public class Dobavljac {
 				+ ",adresom: " + adresa + ",i telefonom: " + telefon;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Dobavljac other = (Dobavljac) obj;
+		if (dobavljacId == null) {
+			if (other.dobavljacId != null)
+				return false;
+		} else if (!dobavljacId.equals(other.dobavljacId))
+			return false;
+		return true;
+	}
+	
 
 }
