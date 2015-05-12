@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 /**
  * predstavlja zaposlenog u nasoj prodavnici
- * @author Thekgiga
+ * 
  *
  */
 public class Zaposleni implements Serializable {
@@ -154,6 +154,7 @@ public class Zaposleni implements Serializable {
 		} else if (!ID_zaposlenog.equals(other.ID_zaposlenog))
 			return false;
 		return true;
+
 	}
 
 }

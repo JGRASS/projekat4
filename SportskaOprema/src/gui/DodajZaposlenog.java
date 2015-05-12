@@ -1,6 +1,7 @@
 package gui;
 
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -143,6 +144,7 @@ public class DodajZaposlenog extends JFrame {
 					GUIKontroler.dodajZaposlenog(getTextField_imeZaposlenog().getText(),getTextField_prezimeZaposlenog().getText(), getComboBox().getSelectedItem().toString(),
 							getTextField_brtelefona().getText(), getTextField_Id_Zaposlenog().getText(),getTextField_Adresa().getText());
 					dispose();
+
 				}
 			});
 		}
