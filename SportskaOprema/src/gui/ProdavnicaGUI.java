@@ -41,8 +41,6 @@ public class ProdavnicaGUI extends JFrame {
 	private JSplitPane splitPane;
 	private JLabel lbl_stanjeNaRacunu;
 	private JTextField textField_stanjeNaRacunu;
-	private JMenu mnZaposleni;
-	private JMenuItem mntmDodajZaposlenog;
 	private JMenuItem mntmAboutProgram;
 	private JTabbedPane tabbedPane;
 	private JLayeredPane layeredPane_Prodaja;
@@ -99,7 +97,6 @@ public class ProdavnicaGUI extends JFrame {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
 			menuBar.add(getMnFile());
-			menuBar.add(getMnZaposleni());
 			menuBar.add(getMnAbout());
 		}
 		return menuBar;
@@ -198,25 +195,6 @@ public class ProdavnicaGUI extends JFrame {
 			textField_stanjeNaRacunu.setColumns(10);
 		}
 		return textField_stanjeNaRacunu;
-	}
-	private JMenu getMnZaposleni() {
-		if (mnZaposleni == null) {
-			mnZaposleni = new JMenu("Zaposleni");
-			mnZaposleni.add(getMntmDodajZaposlenog());
-		}
-		return mnZaposleni;
-	}
-	private JMenuItem getMntmDodajZaposlenog() {
-		if (mntmDodajZaposlenog == null) {
-			mntmDodajZaposlenog = new JMenuItem("Dodaj zaposlenog");
-			mntmDodajZaposlenog.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.otvoriDodajZaposlenog();
-					
-				}
-			});
-		}
-		return mntmDodajZaposlenog;
 	}
 	private JMenuItem getMntmAboutProgram() {
 		if (mntmAboutProgram == null) {
