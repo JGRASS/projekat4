@@ -10,7 +10,11 @@ import prodavnica.Zaposleni;
 
 
 public class SOUcitajIzFajlaZaposleni {
-	
+	/**
+	 * Metoda koja vrsi deserijalizaciju liste zaposlenih.
+	 * @param putanja lokacija fajla iz kog se vrsi ucitavanje.
+	 * @param dobavljaci lista zaposlenih.
+	 */
 	public static void ucitajIzFajla(String putanja, LinkedList<Zaposleni> dobavljaci) {
 		try{
 			ObjectInputStream in = new ObjectInputStream(

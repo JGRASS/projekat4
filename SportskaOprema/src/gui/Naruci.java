@@ -1,8 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,12 +9,9 @@ import nabavka.Dobavljac;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JOptionPane;
-import javax.swing.JSplitPane;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 
-import java.awt.Dimension;
-import java.awt.Cursor;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;

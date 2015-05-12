@@ -9,7 +9,11 @@ import prodavnica.Kupac;
 
 
 public class SOSacuvajUFajlKupac {
-	
+	/**
+	 * metoda koja vrsi serijalizaciju liste kupaca.
+	 * @param putanja mesto gde ce se sacuvati fajl.
+	 * @param kupci lista kupaca.
+	 */
 	public static void sacuvajUFajl(String putanja, LinkedList<Kupac> kupci) {
 		try{
 			ObjectOutputStream out = new ObjectOutputStream(

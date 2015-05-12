@@ -8,14 +8,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
-import prodavnica.Zaposleni;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

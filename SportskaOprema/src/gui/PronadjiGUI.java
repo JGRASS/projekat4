@@ -1,15 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import java.awt.Font;

@@ -10,7 +10,11 @@ import prodavnica.Zaposleni;
 
 
 public class SOSacuvajUFajlZaposleni {
-	
+	/**
+	 * Metoda koja vrsi serijalizaciju liste zaposlenih
+	 * @param putanja mesto gde ce se sacuvati fajl.
+	 * @param zaposleni lista zaposlenih.
+	 */
 	public static void sacuvajUFajl(String putanja, LinkedList<Zaposleni> zaposleni) {
 		try{
 			ObjectOutputStream out = new ObjectOutputStream(

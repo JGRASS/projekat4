@@ -10,7 +10,11 @@ import prodavnica.Kupac;
 
 
 public class SOUcitajIzFajlaKupac {
-	
+	/**
+	 * Metoda koja vrsi deserijalizaciju liste kupaca.
+	 * @param putanja lokacija fajla iz kog se vrsi ucitavanje.
+	 * @param kupci lista kupaca.
+	 */
 	public static void ucitajIzFajla(String putanja, LinkedList<Kupac> kupci) {
 		try{
 			ObjectInputStream in = new ObjectInputStream(

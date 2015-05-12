@@ -1,8 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,19 +11,13 @@ import javax.swing.JList;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import prodavnica.Kupac;
 import prodavnica.Proizvod;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.LinkedList;
-
-import javax.swing.JCheckBox;
-
 import nabavka.Dobavljac;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
@@ -68,12 +60,12 @@ public class DodajGUI extends JFrame {
 	private JList list_2;
 	private JButton btnDodajProizvodDobavljaca;
 
-
 	/**
 	 * Create the frame.
 	 */
 	public DodajGUI() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DodajGUI.class.getResource("/Icons/green-plus-hi.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(
+				DodajGUI.class.getResource("/Icons/green-plus-hi.png")));
 		setTitle("Dodavanje");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -98,6 +90,7 @@ public class DodajGUI extends JFrame {
 		}
 		return tabbedPane;
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -114,6 +107,7 @@ public class DodajGUI extends JFrame {
 		}
 		return panel;
 	}
+
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
@@ -128,6 +122,7 @@ public class DodajGUI extends JFrame {
 		}
 		return panel_1;
 	}
+
 	private JPanel getPanel_2() {
 		if (panel_2 == null) {
 			panel_2 = new JPanel();
@@ -145,6 +140,7 @@ public class DodajGUI extends JFrame {
 		}
 		return panel_2;
 	}
+
 	private JPanel getPanel_3() {
 		if (panel_3 == null) {
 			panel_3 = new JPanel();
@@ -154,47 +150,58 @@ public class DodajGUI extends JFrame {
 		}
 		return panel_3;
 	}
+
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Dodaj");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if(tabbedPane.getSelectedIndex()==0){
-						if(GUIKontroler.proverIdProizvoda(textField.getText())){			
-						GUIKontroler.dodajProizvod(textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText());
-						list.setListData(GUIKontroler.prikaziProizvode().toArray());
-						textField.setText("");
-						textField_1.setText("");
-						textField_2.setText("");
-						textField_3.setText("");
-						}
-						else {
+					if (tabbedPane.getSelectedIndex() == 0) {
+						if (GUIKontroler.proverIdProizvoda(textField.getText())) {
+							GUIKontroler.dodajProizvod(textField.getText(),
+									textField_1.getText(),
+									textField_2.getText(),
+									textField_3.getText());
+							list.setListData(GUIKontroler.prikaziProizvode()
+									.toArray());
+							textField.setText("");
+							textField_1.setText("");
+							textField_2.setText("");
+							textField_3.setText("");
+						} else {
 							textField.setText("ID vec zauzet");
 						}
 					}
-					if(tabbedPane.getSelectedIndex()==1){
-						if(GUIKontroler.proveriIdKupca(textField_4.getText())){
-						GUIKontroler.dodajKupca(textField_4.getText(),textField_5.getText(),textField_6.getText());
-						list_1.setListData(GUIKontroler.prikaziSveKupce().toArray());
-						
-						textField_4.setText("");
-						textField_5.setText("");
-						textField_6.setText("");
-					}
-						else{
+					if (tabbedPane.getSelectedIndex() == 1) {
+						if (GUIKontroler.proveriIdKupca(textField_4.getText())) {
+							GUIKontroler.dodajKupca(textField_4.getText(),
+									textField_5.getText(),
+									textField_6.getText());
+							list_1.setListData(GUIKontroler.prikaziSveKupce()
+									.toArray());
+
+							textField_4.setText("");
+							textField_5.setText("");
+							textField_6.setText("");
+						} else {
 							textField_4.setText("ID vec zauzet");
 						}
 					}
-					if(tabbedPane.getSelectedIndex()==2){
-						if(GUIKontroler.proveriIdDobavljaca(textField_7.getText())){
-							LinkedList<Proizvod> proizvodi=new LinkedList<Proizvod>();
-						GUIKontroler.dodajDobavljaca(textField_7.getText(),textField_8.getText(),textField_9.getText(),textField_10.getText(),proizvodi);
-						list_2.setListData(GUIKontroler.prikaziSveDobavljace().toArray());
-						textField_7.setText("");
-						textField_8.setText("");
-						textField_9.setText("");
-						textField_10.setText("");
-						}else{
+					if (tabbedPane.getSelectedIndex() == 2) {
+						if (GUIKontroler.proveriIdDobavljaca(textField_7
+								.getText())) {
+							LinkedList<Proizvod> proizvodi = new LinkedList<Proizvod>();
+							GUIKontroler.dodajDobavljaca(textField_7.getText(),
+									textField_8.getText(),
+									textField_9.getText(),
+									textField_10.getText(), proizvodi);
+							list_2.setListData(GUIKontroler
+									.prikaziSveDobavljace().toArray());
+							textField_7.setText("");
+							textField_8.setText("");
+							textField_9.setText("");
+							textField_10.setText("");
+						} else {
 							textField_7.setText("ID vec zauzet");
 						}
 					}
@@ -203,6 +210,7 @@ public class DodajGUI extends JFrame {
 		}
 		return btnNewButton;
 	}
+
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("Odustani");
@@ -214,6 +222,7 @@ public class DodajGUI extends JFrame {
 		}
 		return btnNewButton_1;
 	}
+
 	private JList getList_1() {
 		if (list == null) {
 			list = new JList();
@@ -221,17 +230,17 @@ public class DodajGUI extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					try {
-						Proizvod p=(Proizvod)(list.getSelectedValue());
+						Proizvod p = (Proizvod) (list.getSelectedValue());
 						textField.setText(p.getId());
 						textField.setEditable(false);
 						textField_1.setText(p.getNaziv());
 						textField_1.setEditable(false);
-						textField_2.setText(p.getCena()+"");
+						textField_2.setText(p.getCena() + "");
 						textField_2.setEditable(false);
-						textField_3.setText(p.getKolicina()+"");
+						textField_3.setText(p.getKolicina() + "");
 						textField_3.setEditable(false);
 					} catch (Exception e) {
-						
+
 						JOptionPane.showMessageDialog(contentPane,
 								"Lista je prazna", "Greska",
 								JOptionPane.ERROR_MESSAGE);
@@ -239,11 +248,13 @@ public class DodajGUI extends JFrame {
 				}
 			});
 			list.setFont(new Font("Tahoma", Font.PLAIN, 10));
-			list.setBorder(new TitledBorder(null, "Asortiman:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			list.setBorder(new TitledBorder(null, "Asortiman:",
+					TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			list.setBounds(206, 11, 395, 257);
 		}
 		return list;
 	}
+
 	private JLabel getLblId() {
 		if (lblId == null) {
 			lblId = new JLabel("ID");
@@ -252,6 +263,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblId;
 	}
+
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("Naziv");
@@ -260,6 +272,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel;
 	}
+
 	private JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
@@ -268,6 +281,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField;
 	}
+
 	private JTextField getTextField_1() {
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
@@ -276,6 +290,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_1;
 	}
+
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("Cena");
@@ -284,6 +299,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel_1;
 	}
+
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("Koli\u010Dina");
@@ -292,6 +308,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel_2;
 	}
+
 	private JTextField getTextField_2() {
 		if (textField_2 == null) {
 			textField_2 = new JTextField();
@@ -300,6 +317,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_2;
 	}
+
 	private JTextField getTextField_3() {
 		if (textField_3 == null) {
 			textField_3 = new JTextField();
@@ -308,18 +326,20 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_3;
 	}
+
 	private JButton getBtnNewButton_2() {
 		if (btnNewButton_2 == null) {
 			btnNewButton_2 = new JButton("Obrisi");
 			btnNewButton_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if(tabbedPane.getSelectedIndex()==0){
-						
-							Proizvod p=(Proizvod)(list.getSelectedValue());
-							
-							GUIKontroler.izbrisiProizvod(p);
-							list.setListData(GUIKontroler.prikaziProizvode().toArray());
-						
+					if (tabbedPane.getSelectedIndex() == 0) {
+
+						Proizvod p = (Proizvod) (list.getSelectedValue());
+
+						GUIKontroler.izbrisiProizvod(p);
+						list.setListData(GUIKontroler.prikaziProizvode()
+								.toArray());
+
 						textField.setText("");
 						textField.setEditable(true);
 						textField_1.setText("");
@@ -328,30 +348,32 @@ public class DodajGUI extends JFrame {
 						textField_2.setEditable(true);
 						textField_3.setText("");
 						textField_3.setEditable(true);
-                        
+
 					}
-					if(tabbedPane.getSelectedIndex()==1){
-						Kupac p=(Kupac)(list_1.getSelectedValue());
+					if (tabbedPane.getSelectedIndex() == 1) {
+						Kupac p = (Kupac) (list_1.getSelectedValue());
 						GUIKontroler.izbrisiKupca(p);
-						list_1.setListData(GUIKontroler.prikaziSveKupce().toArray());
-						
+						list_1.setListData(GUIKontroler.prikaziSveKupce()
+								.toArray());
+
 						textField_4.setText("");
 						textField_4.setEditable(true);
 						textField_5.setText("");
 						textField_5.setEditable(true);
 						textField_6.setText("");
-						textField_6.setEditable(true); 
+						textField_6.setEditable(true);
 					}
-					if(tabbedPane.getSelectedIndex()==2){
-						Dobavljac p=(Dobavljac)(list_2.getSelectedValue());
+					if (tabbedPane.getSelectedIndex() == 2) {
+						Dobavljac p = (Dobavljac) (list_2.getSelectedValue());
 						GUIKontroler.izbrisiDobavljaca(p);
-						list_2.setListData(GUIKontroler.prikaziSveDobavljace().toArray());
+						list_2.setListData(GUIKontroler.prikaziSveDobavljace()
+								.toArray());
 						textField_7.setText("");
 						textField_7.setEditable(true);
 						textField_8.setText("");
 						textField_8.setEditable(true);
 						textField_9.setText("");
-						textField_9.setEditable(true); 
+						textField_9.setEditable(true);
 						textField_10.setText("");
 						textField_10.setEditable(true);
 					}
@@ -360,6 +382,7 @@ public class DodajGUI extends JFrame {
 		}
 		return btnNewButton_2;
 	}
+
 	private JLabel getLblNewLabel_3() {
 		if (lblNewLabel_3 == null) {
 			lblNewLabel_3 = new JLabel("ID");
@@ -368,6 +391,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel_3;
 	}
+
 	private JLabel getLblNewLabel_4() {
 		if (lblNewLabel_4 == null) {
 			lblNewLabel_4 = new JLabel("Ime");
@@ -376,6 +400,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel_4;
 	}
+
 	private JLabel getLblNewLabel_5() {
 		if (lblNewLabel_5 == null) {
 			lblNewLabel_5 = new JLabel("Potroseno novca");
@@ -384,6 +409,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel_5;
 	}
+
 	private JTextField getTextField_4() {
 		if (textField_4 == null) {
 			textField_4 = new JTextField();
@@ -392,6 +418,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_4;
 	}
+
 	private JTextField getTextField_5() {
 		if (textField_5 == null) {
 			textField_5 = new JTextField();
@@ -400,6 +427,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_5;
 	}
+
 	private JTextField getTextField_6() {
 		if (textField_6 == null) {
 			textField_6 = new JTextField();
@@ -408,6 +436,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_6;
 	}
+
 	private JList getList_1_1() {
 		if (list_1 == null) {
 			list_1 = new JList();
@@ -416,27 +445,29 @@ public class DodajGUI extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					try {
-						Kupac p=(Kupac)(list_1.getSelectedValue());
-						
+						Kupac p = (Kupac) (list_1.getSelectedValue());
+
 						textField_4.setText(p.getId());
 						textField_4.setEditable(false);
 						textField_5.setText(p.getIme());
 						textField_5.setEditable(false);
-						textField_6.setText(p.getkolicinaNovca()+"");
+						textField_6.setText(p.getkolicinaNovca() + "");
 						textField_6.setEditable(false);
 					} catch (Exception e) {
-						
+
 						JOptionPane.showMessageDialog(contentPane,
 								"Lista je prazna", "Greska",
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
-			list_1.setBorder(new TitledBorder(null, "Kupci", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			list_1.setBorder(new TitledBorder(null, "Kupci",
+					TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			list_1.setBounds(225, 11, 376, 263);
 		}
 		return list_1;
 	}
+
 	private JLabel getLblNewLabel_6() {
 		if (lblNewLabel_6 == null) {
 			lblNewLabel_6 = new JLabel("ID");
@@ -445,6 +476,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel_6;
 	}
+
 	private JLabel getLblNewLabel_7() {
 		if (lblNewLabel_7 == null) {
 			lblNewLabel_7 = new JLabel("Ime");
@@ -453,6 +485,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel_7;
 	}
+
 	private JLabel getLblNewLabel_8() {
 		if (lblNewLabel_8 == null) {
 			lblNewLabel_8 = new JLabel("Adresa");
@@ -461,6 +494,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel_8;
 	}
+
 	private JLabel getLblNewLabel_9() {
 		if (lblNewLabel_9 == null) {
 			lblNewLabel_9 = new JLabel("Telefon");
@@ -469,6 +503,7 @@ public class DodajGUI extends JFrame {
 		}
 		return lblNewLabel_9;
 	}
+
 	private JTextField getTextField_7() {
 		if (textField_7 == null) {
 			textField_7 = new JTextField();
@@ -477,6 +512,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_7;
 	}
+
 	private JTextField getTextField_8() {
 		if (textField_8 == null) {
 			textField_8 = new JTextField();
@@ -485,6 +521,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_8;
 	}
+
 	private JTextField getTextField_9() {
 		if (textField_9 == null) {
 			textField_9 = new JTextField();
@@ -493,6 +530,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_9;
 	}
+
 	private JTextField getTextField_10() {
 		if (textField_10 == null) {
 			textField_10 = new JTextField();
@@ -501,6 +539,7 @@ public class DodajGUI extends JFrame {
 		}
 		return textField_10;
 	}
+
 	private JList getList_2() {
 		if (list_2 == null) {
 			list_2 = new JList();
@@ -509,7 +548,7 @@ public class DodajGUI extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					try {
-						Dobavljac p=(Dobavljac)(list_2.getSelectedValue());
+						Dobavljac p = (Dobavljac) (list_2.getSelectedValue());
 						textField_7.setText(p.getDobavljacId());
 						textField_7.setEditable(false);
 						textField_8.setText(p.getIme());
@@ -520,25 +559,29 @@ public class DodajGUI extends JFrame {
 						textField_10.setEditable(false);
 						btnDodajProizvodDobavljaca.setEnabled(true);
 					} catch (Exception e) {
-						
+
 						JOptionPane.showMessageDialog(contentPane,
 								"Lista je prazna", "Greska",
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
-			list_2.setBorder(new TitledBorder(null, "Dobavljaci", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			list_2.setBorder(new TitledBorder(null, "Dobavljaci",
+					TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			list_2.setBounds(193, 14, 408, 260);
 		}
 		return list_2;
 	}
+
 	private JButton getBtnDodajProizvodDobavljaca() {
 		if (btnDodajProizvodDobavljaca == null) {
-			btnDodajProizvodDobavljaca = new JButton("Dodaj proizvod dobavljaca");
+			btnDodajProizvodDobavljaca = new JButton(
+					"Dodaj proizvod dobavljaca");
 			btnDodajProizvodDobavljaca.setEnabled(false);
 			btnDodajProizvodDobavljaca.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.prikaziDodajProizvodDobavljaca(GUIKontroler.pretraziDobavljace(textField_7.getText()));
+					GUIKontroler.prikaziDodajProizvodDobavljaca(GUIKontroler
+							.pretraziDobavljace(textField_7.getText()));
 				}
 			});
 			btnDodajProizvodDobavljaca.setBounds(0, 252, 187, 23);
