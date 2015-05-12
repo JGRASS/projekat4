@@ -21,7 +21,11 @@ import nabavka.Dobavljac;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
-
+/**
+ * Klasa koja predstavlja prozor preko kog se moze vrsiti dodavanje proizvoda,
+ * kupca ili dobavljaca u odgovarajuce liste.
+ *
+ */
 public class DodajGUI extends JFrame {
 
 	private JPanel contentPane;

@@ -12,7 +12,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import nabavka.Dobavljac;
-
+/**
+ * klasa koji sluzi za dodavanje novog proizvoda.
+ *
+ */
 public class DodajProizvodDobavljacaGUI extends JFrame {
 
 	private JPanel contentPane;

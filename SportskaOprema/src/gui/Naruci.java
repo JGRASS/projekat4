@@ -28,7 +28,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Toolkit;
-
+/**
+ * preko ovog prozora vrsimo nabavljanje novih proizvoda
+ *
+ */
 public class Naruci extends JFrame {
 
 	private JPanel contentPane;

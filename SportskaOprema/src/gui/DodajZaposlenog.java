@@ -17,7 +17,10 @@ import javax.swing.DefaultComboBoxModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * prozor preko kog se vrsi dodavanje novog zaposlenog
+ *
+ */
 public class DodajZaposlenog extends JFrame {
 
 	private JPanel contentPane;

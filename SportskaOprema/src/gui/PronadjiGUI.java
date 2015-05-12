@@ -15,7 +15,10 @@ import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
-
+/**
+ * klasa koja slizu za pronalazenje i prikaz odgovarajuceg proizvoda, kupca ili odbavljaca.
+ *
+ */
 public class PronadjiGUI extends JFrame {
 
 	private JPanel contentPane;

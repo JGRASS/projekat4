@@ -28,7 +28,10 @@ import javax.swing.ImageIcon;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-
+/**
+ * glavni prozor nase apliakcije.
+ *
+ */
 public class ProdavnicaGUI extends JFrame {
 
 	private JPanel contentPane;

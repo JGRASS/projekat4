@@ -26,7 +26,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
 import java.awt.Font;
-
+/**
+ * klasa koja sluzi za primanje porudzbine odredjene kolicine proizvoda.
+ *
+ */
 public class PrimiNarudzbinuGUI extends JFrame {
 
 	private JPanel contentPane;
