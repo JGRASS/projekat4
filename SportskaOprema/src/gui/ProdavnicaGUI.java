@@ -28,6 +28,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.awt.Toolkit;
 /**
  * glavni prozor nase apliakcije.
  *
@@ -67,10 +68,12 @@ public class ProdavnicaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ProdavnicaGUI() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ProdavnicaGUI.class.getResource("/Icons/images.jpg")));
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent arg0) {
 				GUIKontroler.osveziStanjeNaRacunu(textField_stanjeNaRacunu);
 				GUIKontroler.osveziListuKupaca(ProdajaList);
+				GUIKontroler.osveziListuDobavljaca(nabavkaList);
 				
 			}
 			public void windowLostFocus(WindowEvent arg0) {

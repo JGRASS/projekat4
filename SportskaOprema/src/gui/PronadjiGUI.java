@@ -456,6 +456,7 @@ public class PronadjiGUI extends JFrame {
 	private JList getDobavljacProizvodilist() {
 		if (dobavljacProizvodilist == null) {
 			dobavljacProizvodilist = new JList();
+			dobavljacProizvodilist.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		}
 		return dobavljacProizvodilist;
 	}
