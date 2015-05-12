@@ -14,6 +14,8 @@ import prodavnica.Prodavnica;
 import prodavnica.Proizvod;
 
 public class GUIKontroler extends JFrame {
+	public GUIKontroler() {
+	}
 
 	private static Prodavnica prodavnica = new Prodavnica();
 	private static ProdavnicaGUI glavniProzor;
