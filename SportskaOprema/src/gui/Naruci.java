@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -27,6 +28,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 /**
  * preko ovog prozora vrsimo nabavljanje novih proizvoda
@@ -222,22 +224,28 @@ public class Naruci extends JFrame {
 			btnNewButton = new JButton("Naruci");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Proizvod c=(Proizvod)(listProizvodi.getSelectedValue());
-					if(Integer.parseInt(textFieldKolicina.getText())<=c.getKolicina()){
-						if((Double.parseDouble(textFieldCena.getText())*Integer.parseInt(textFieldKolicina.getText()))<racun){
-					GUIKontroler.naruciProizvod((Dobavljac)(listDobavljaci.getSelectedValue()),textFieldID.getText(),textFieldCena.getText(),textFieldNaziv.getText(),textFieldKolicina.getText());
-					dispose();
+					try {
+						Proizvod c=(Proizvod)(listProizvodi.getSelectedValue());
+						if(Integer.parseInt(textFieldKolicina.getText())<=c.getKolicina()){
+							if((Double.parseDouble(textFieldCena.getText())*Integer.parseInt(textFieldKolicina.getText()))<racun){
+						GUIKontroler.naruciProizvod((Dobavljac)(listDobavljaci.getSelectedValue()),textFieldID.getText(),textFieldCena.getText(),textFieldNaziv.getText(),textFieldKolicina.getText());
+						dispose();
+							}
+							else {
+								JOptionPane.showMessageDialog(contentPane,
+										"Nemate dovoljno novca na racunu", "Greska",
+										JOptionPane.ERROR_MESSAGE);
+							}
 						}
-						else {
+						else{
 							JOptionPane.showMessageDialog(contentPane,
-									"Nemate dovoljno novca na racunu", "Greska",
+									"Dobavljac nema zeljenu kolicinu proizvoda", "Greska",
 									JOptionPane.ERROR_MESSAGE);
 						}
-					}
-					else{
-						JOptionPane.showMessageDialog(contentPane,
-								"Dobavljac nema zeljenu kolicinu proizvoda", "Greska",
-								JOptionPane.ERROR_MESSAGE);
+					} catch (NumberFormatException e) {
+						GUIKontroler.prikaziGresku();
+					} catch (HeadlessException e) {
+						GUIKontroler.prikaziGresku();
 					}
 				}
 			});

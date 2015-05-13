@@ -566,4 +566,8 @@ public class GUIKontroler extends JFrame {
 		p.setLocationRelativeTo(glavniProzor.getContentPane());
 
 	}
+	
+	public static void prikaziGresku() {
+		JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Pogresno uneta vrednost", "Greska", JOptionPane.ERROR_MESSAGE);
+	}
 }

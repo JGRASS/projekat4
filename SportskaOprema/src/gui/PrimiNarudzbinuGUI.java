@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +25,7 @@ import java.awt.event.WindowEvent;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.Font;
 /**
@@ -178,15 +180,21 @@ public class PrimiNarudzbinuGUI extends JFrame {
 			btnOk = new JButton("Ok");
 			btnOk.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Proizvod c=(Proizvod)(Proizvodilist.getSelectedValue());
-					if(Integer.parseInt(kolicinatextField.getText())<=c.getKolicina()){
-					GUIKontroler.primiNarudzbenicu(((Kupac) KupciList.getSelectedValue()), imeProizvodatextField.getText(), idProizvodatextField.getText(), kolicinatextField.getText(), Double.parseDouble(cenatextField.getText()));
-					dispose();
-					}
-					else{
-						JOptionPane.showMessageDialog(contentPane,
-								"Nema dovoljno proizvoda", "Greska",
-								JOptionPane.ERROR_MESSAGE);
+					try {
+						Proizvod c=(Proizvod)(Proizvodilist.getSelectedValue());
+						if(Integer.parseInt(kolicinatextField.getText())<=c.getKolicina()){
+						GUIKontroler.primiNarudzbenicu(((Kupac) KupciList.getSelectedValue()), imeProizvodatextField.getText(), idProizvodatextField.getText(), kolicinatextField.getText(), Double.parseDouble(cenatextField.getText()));
+						dispose();
+						}
+						else{
+							JOptionPane.showMessageDialog(contentPane,
+									"Nema dovoljno proizvoda", "Greska",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					} catch (NumberFormatException e) {
+						GUIKontroler.prikaziGresku();
+					} catch (HeadlessException e) {
+						GUIKontroler.prikaziGresku();
 					}
 				}
 			});
